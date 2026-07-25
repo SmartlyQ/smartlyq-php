@@ -1,0 +1,137 @@
+name: Regenerate
+
+on:
+  # Fired by the docs repository when openapi.json changes
+  repository_dispatch:
+    types: [openapi-updated]
+  workflow_dispatch:
+    inputs:
+      force_publish:
+        description: 'Bump and publish even if the spec is unchanged'
+        type: boolean
+        default: false
+  schedule:
+    # Daily safety net in case a dispatch is missed
+    - cron: '30 4 * * *'
+
+concurrency:
+  group: regenerate-sdk
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    name: Regenerate from OpenAPI
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: curl
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress
+
+      - name: Fetch latest OpenAPI spec
+        run: curl -f -sSL --retry 5 --retry-delay 5 https://docs.smartlyq.com/openapi.json -o openapi.json
+
+      - name: Generate SDK
+        run: php scripts/generate-client.php
+
+      - name: Generate endpoint tests
+        run: php scripts/generate-tests.php
+
+      - name: Generate README reference
+        run: php scripts/generate-readme.php
+
+      - name: Lint
+        run: |
+          set -e
+          find src scripts -name '*.php' -print0 | xargs -0 -n1 php -l > /dev/null
+          echo "All PHP files lint clean."
+
+      - name: Run tests
+        run: vendor/bin/phpunit
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git add -A
+          if ! git diff --staged --quiet || [ "${{ inputs.force_publish }}" = "true" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Bump version and commit
+        if: steps.changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          NEW_VERSION=$(awk -F. '{printf "%d.%d.%d", $1, $2, $3 + 1}' VERSION)
+          echo "$NEW_VERSION" > VERSION
+
+          git add -A
+          git commit -m "chore: regenerate from OpenAPI spec
+
+          Auto-generated SDK update (v$NEW_VERSION)"
+
+          # Retry with rebase to survive concurrent dispatches
+          for attempt in 1 2 3; do
+            if git push; then break; fi
+            echo "Push attempt $attempt failed; rebasing and retrying..."
+            git pull --rebase origin main
+            sleep $((attempt * 5))
+          done
+
+      # Runs unconditionally so the FIRST version publishes even with no spec
+      # delta; later no-change runs see the existing tag and skip.
+      - name: Check if version already tagged
+        id: check_tagged
+        run: |
+          CURRENT_VERSION=$(cat VERSION)
+          echo "version=${CURRENT_VERSION}" >> $GITHUB_OUTPUT
+          if git rev-parse -q --verify "refs/tags/v${CURRENT_VERSION}" > /dev/null; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+            echo "Tag v${CURRENT_VERSION} already exists, skipping release."
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
+
+      # Packagist auto-updates from tags via its GitHub integration, so
+      # pushing the tag is the publish step - no registry token involved.
+      - name: Tag release
+        if: steps.check_tagged.outputs.skip != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag "v${{ steps.check_tagged.outputs.version }}"
+          git push origin "v${{ steps.check_tagged.outputs.version }}"
+
+      - name: Create GitHub Release
+        if: steps.check_tagged.outputs.skip != 'true'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.check_tagged.outputs.version }}
+          name: v${{ steps.check_tagged.outputs.version }}
+          generate_release_notes: true
+          body: |
+            ## Auto-generated SDK update
+
+            This release was generated from the latest OpenAPI spec.
+
+            ```bash
+            composer require smartlyq/sdk:^${{ steps.check_tagged.outputs.version }}
+            ```
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

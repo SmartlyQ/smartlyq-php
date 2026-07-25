@@ -1,0 +1,43 @@
+{
+    "name": "smartlyq/sdk",
+    "description": "Official PHP SDK for the SmartlyQ API - social posting, AI content generation, SEO research, CRM, chatbots, and more.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "smartlyq",
+        "api",
+        "sdk",
+        "social-media",
+        "ai",
+        "seo",
+        "crm"
+    ],
+    "homepage": "https://docs.smartlyq.com",
+    "support": {
+        "docs": "https://docs.smartlyq.com"
+    },
+    "require": {
+        "php": ">=8.1",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5 || ^11.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Smartlyq\\": "src/"
+        }
+    },
+    "scripts": {
+        "generate": [
+            "@php scripts/generate-client.php",
+            "@php scripts/generate-tests.php",
+            "@php scripts/generate-readme.php"
+        ],
+        "test": "phpunit"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
