@@ -1201,6 +1201,83 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'GET', 'path' => '/social/conversations/search'], $this->calls[0]);
     }
 
+    public function test_social_pinterestBoards(): void
+    {
+        $sq = $this->client();
+        $sq->social->pinterestBoards('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/pinterest/boards'], $this->calls[0]);
+    }
+
+    public function test_social_youtubePlaylists(): void
+    {
+        $sq = $this->client();
+        $sq->social->youtubePlaylists('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/youtube/playlists'], $this->calls[0]);
+    }
+
+    public function test_social_instagramPublishingLimit(): void
+    {
+        $sq = $this->client();
+        $sq->social->instagramPublishingLimit('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/instagram/publishing-limit'], $this->calls[0]);
+    }
+
+    public function test_social_gmbPerformance(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbPerformance('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/gmb/performance'], $this->calls[0]);
+    }
+
+    public function test_social_gmbSearchKeywords(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbSearchKeywords('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/gmb/search-keywords'], $this->calls[0]);
+    }
+
+    public function test_social_redditSearch(): void
+    {
+        $sq = $this->client();
+        $sq->social->redditSearch('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/reddit/search'], $this->calls[0]);
+    }
+
+    public function test_social_redditFeed(): void
+    {
+        $sq = $this->client();
+        $sq->social->redditFeed('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/reddit/feed'], $this->calls[0]);
+    }
+
+    public function test_social_redditSubreddits(): void
+    {
+        $sq = $this->client();
+        $sq->social->redditSubreddits('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/reddit/subreddits'], $this->calls[0]);
+    }
+
+    public function test_social_redditSubredditRules(): void
+    {
+        $sq = $this->client();
+        $sq->social->redditSubredditRules('test-id', 'test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/reddit/subreddits/test-id/rules'], $this->calls[0]);
+    }
+
+    public function test_social_instagramStories(): void
+    {
+        $sq = $this->client();
+        $sq->social->instagramStories('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/instagram/stories'], $this->calls[0]);
+    }
+
+    public function test_social_facebookPostReactions(): void
+    {
+        $sq = $this->client();
+        $sq->social->facebookPostReactions('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/facebook/post-reactions'], $this->calls[0]);
+    }
+
     public function test_urls_shorten(): void
     {
         $sq = $this->client();

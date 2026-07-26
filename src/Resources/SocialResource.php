@@ -527,4 +527,141 @@ class SocialResource
             'options' => $options,
         ]);
     }
+
+    /**
+     * Pinterest boards
+     *
+     * GET /social/accounts/{account_id}/pinterest/boards
+     */
+    public function pinterestBoards(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/pinterest/boards', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * YouTube playlists
+     *
+     * GET /social/accounts/{account_id}/youtube/playlists
+     */
+    public function youtubePlaylists(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/youtube/playlists', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Instagram publishing limit
+     *
+     * GET /social/accounts/{account_id}/instagram/publishing-limit
+     */
+    public function instagramPublishingLimit(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/instagram/publishing-limit', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Google Business performance
+     *
+     * GET /social/accounts/{account_id}/gmb/performance
+     */
+    public function gmbPerformance(string $accountId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/gmb/performance', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Google Business search keywords
+     *
+     * GET /social/accounts/{account_id}/gmb/search-keywords
+     */
+    public function gmbSearchKeywords(string $accountId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/gmb/search-keywords', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Reddit search
+     *
+     * GET /social/accounts/{account_id}/reddit/search
+     */
+    public function redditSearch(string $accountId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/reddit/search', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Reddit feed
+     *
+     * GET /social/accounts/{account_id}/reddit/feed
+     */
+    public function redditFeed(string $accountId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/reddit/feed', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Subscribed subreddits
+     *
+     * GET /social/accounts/{account_id}/reddit/subreddits
+     */
+    public function redditSubreddits(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/reddit/subreddits', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Subreddit rules
+     *
+     * GET /social/accounts/{account_id}/reddit/subreddits/{subreddit}/rules
+     */
+    public function redditSubredditRules(string $accountId, string $subreddit, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/reddit/subreddits/' . rawurlencode($subreddit) . '/rules', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Instagram stories
+     *
+     * GET /social/accounts/{account_id}/instagram/stories
+     */
+    public function instagramStories(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/instagram/stories', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Facebook post reactions
+     *
+     * GET /social/accounts/{account_id}/facebook/post-reactions
+     */
+    public function facebookPostReactions(string $accountId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/facebook/post-reactions', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
 }
