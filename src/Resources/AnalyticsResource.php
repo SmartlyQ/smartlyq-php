@@ -53,4 +53,68 @@ class AnalyticsResource
             'options' => $options,
         ]);
     }
+
+    /**
+     * Daily metrics
+     *
+     * GET /analytics/daily-metrics
+     */
+    public function dailyMetrics(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/analytics/daily-metrics', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Best time to post
+     *
+     * GET /analytics/best-time
+     */
+    public function bestTime(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/analytics/best-time', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Content decay
+     *
+     * GET /analytics/content-decay
+     */
+    public function contentDecay(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/analytics/content-decay', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Posting frequency vs engagement
+     *
+     * GET /analytics/posting-frequency
+     */
+    public function postingFrequency(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/analytics/posting-frequency', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Post metric timeline
+     *
+     * GET /analytics/posts/{post_id}/timeline
+     */
+    public function postTimeline(string $postId, array $options = []): array
+    {
+        return $this->client->request('GET', '/analytics/posts/' . rawurlencode($postId) . '/timeline', [
+            'options' => $options,
+        ]);
+    }
 }

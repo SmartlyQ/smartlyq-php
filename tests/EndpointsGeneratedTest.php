@@ -95,6 +95,41 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'GET', 'path' => '/analytics/accounts/test-id'], $this->calls[0]);
     }
 
+    public function test_analytics_dailyMetrics(): void
+    {
+        $sq = $this->client();
+        $sq->analytics->dailyMetrics();
+        $this->assertSame(['method' => 'GET', 'path' => '/analytics/daily-metrics'], $this->calls[0]);
+    }
+
+    public function test_analytics_bestTime(): void
+    {
+        $sq = $this->client();
+        $sq->analytics->bestTime();
+        $this->assertSame(['method' => 'GET', 'path' => '/analytics/best-time'], $this->calls[0]);
+    }
+
+    public function test_analytics_contentDecay(): void
+    {
+        $sq = $this->client();
+        $sq->analytics->contentDecay();
+        $this->assertSame(['method' => 'GET', 'path' => '/analytics/content-decay'], $this->calls[0]);
+    }
+
+    public function test_analytics_postingFrequency(): void
+    {
+        $sq = $this->client();
+        $sq->analytics->postingFrequency();
+        $this->assertSame(['method' => 'GET', 'path' => '/analytics/posting-frequency'], $this->calls[0]);
+    }
+
+    public function test_analytics_postTimeline(): void
+    {
+        $sq = $this->client();
+        $sq->analytics->postTimeline('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/analytics/posts/test-id/timeline'], $this->calls[0]);
+    }
+
     public function test_articles_generate(): void
     {
         $sq = $this->client();
