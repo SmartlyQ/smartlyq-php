@@ -1306,6 +1306,146 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'DELETE', 'path' => '/social/accounts/test-id/x/retweets/test-id'], $this->calls[0]);
     }
 
+    public function test_social_editPublishedPost(): void
+    {
+        $sq = $this->client();
+        $sq->social->editPublishedPost('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/posts/test-id/edit'], $this->calls[0]);
+    }
+
+    public function test_social_updatePostMetadata(): void
+    {
+        $sq = $this->client();
+        $sq->social->updatePostMetadata('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/posts/test-id/update-metadata'], $this->calls[0]);
+    }
+
+    public function test_social_syncExternalPosts(): void
+    {
+        $sq = $this->client();
+        $sq->social->syncExternalPosts([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/posts/sync-external'], $this->calls[0]);
+    }
+
+    public function test_social_accountInsights(): void
+    {
+        $sq = $this->client();
+        $sq->social->accountInsights('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/insights'], $this->calls[0]);
+    }
+
+    public function test_social_gmbLocations(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbLocations('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/gmb/locations'], $this->calls[0]);
+    }
+
+    public function test_social_gmbLocation(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbLocation('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/gmb/location'], $this->calls[0]);
+    }
+
+    public function test_social_gmbUpdateLocation(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbUpdateLocation('test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/social/accounts/test-id/gmb/location'], $this->calls[0]);
+    }
+
+    public function test_social_gmbAttributes(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbAttributes('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/gmb/attributes'], $this->calls[0]);
+    }
+
+    public function test_social_gmbUpdateAttributes(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbUpdateAttributes('test-id', []);
+        $this->assertSame(['method' => 'PUT', 'path' => '/social/accounts/test-id/gmb/attributes'], $this->calls[0]);
+    }
+
+    public function test_social_gmbAttributeMetadata(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbAttributeMetadata('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/gmb/attributes/metadata'], $this->calls[0]);
+    }
+
+    public function test_social_gmbMedia(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbMedia('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/gmb/media'], $this->calls[0]);
+    }
+
+    public function test_social_gmbCreateMedia(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbCreateMedia('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/accounts/test-id/gmb/media'], $this->calls[0]);
+    }
+
+    public function test_social_gmbDeleteMedia(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbDeleteMedia('test-id', []);
+        $this->assertSame(['method' => 'DELETE', 'path' => '/social/accounts/test-id/gmb/media'], $this->calls[0]);
+    }
+
+    public function test_social_gmbFoodMenus(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbFoodMenus('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/gmb/food-menus'], $this->calls[0]);
+    }
+
+    public function test_social_gmbUpdateFoodMenus(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbUpdateFoodMenus('test-id', []);
+        $this->assertSame(['method' => 'PUT', 'path' => '/social/accounts/test-id/gmb/food-menus'], $this->calls[0]);
+    }
+
+    public function test_social_gmbPlaceActions(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbPlaceActions('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/gmb/place-actions'], $this->calls[0]);
+    }
+
+    public function test_social_gmbCreatePlaceAction(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbCreatePlaceAction('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/accounts/test-id/gmb/place-actions'], $this->calls[0]);
+    }
+
+    public function test_social_gmbDeletePlaceAction(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbDeletePlaceAction('test-id', []);
+        $this->assertSame(['method' => 'DELETE', 'path' => '/social/accounts/test-id/gmb/place-actions'], $this->calls[0]);
+    }
+
+    public function test_social_gmbVerifications(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbVerifications('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/gmb/verifications'], $this->calls[0]);
+    }
+
+    public function test_social_gmbVerificationOptions(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbVerificationOptions('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/accounts/test-id/gmb/verifications/options'], $this->calls[0]);
+    }
+
     public function test_urls_shorten(): void
     {
         $sq = $this->client();

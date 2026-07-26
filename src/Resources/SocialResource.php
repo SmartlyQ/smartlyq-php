@@ -702,4 +702,257 @@ class SocialResource
             'options' => $options,
         ]);
     }
+
+    /**
+     * Edit published post
+     *
+     * POST /social/posts/{post_id}/edit
+     */
+    public function editPublishedPost(string $postId, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/posts/' . rawurlencode($postId) . '/edit', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Update YouTube metadata
+     *
+     * POST /social/posts/{post_id}/update-metadata
+     */
+    public function updatePostMetadata(string $postId, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/posts/' . rawurlencode($postId) . '/update-metadata', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Sync external posts
+     *
+     * POST /social/posts/sync-external
+     */
+    public function syncExternalPosts(array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/posts/sync-external', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Live account insights
+     *
+     * GET /social/accounts/{account_id}/insights
+     */
+    public function accountInsights(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/insights', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * List Google locations
+     *
+     * GET /social/accounts/{account_id}/gmb/locations
+     */
+    public function gmbLocations(string $accountId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/gmb/locations', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Get business info
+     *
+     * GET /social/accounts/{account_id}/gmb/location
+     */
+    public function gmbLocation(string $accountId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/gmb/location', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Update business info
+     *
+     * PATCH /social/accounts/{account_id}/gmb/location
+     */
+    public function gmbUpdateLocation(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('PATCH', '/social/accounts/' . rawurlencode($accountId) . '/gmb/location', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Get attributes
+     *
+     * GET /social/accounts/{account_id}/gmb/attributes
+     */
+    public function gmbAttributes(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/gmb/attributes', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Update attributes
+     *
+     * PUT /social/accounts/{account_id}/gmb/attributes
+     */
+    public function gmbUpdateAttributes(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('PUT', '/social/accounts/' . rawurlencode($accountId) . '/gmb/attributes', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Available attributes
+     *
+     * GET /social/accounts/{account_id}/gmb/attributes/metadata
+     */
+    public function gmbAttributeMetadata(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/gmb/attributes/metadata', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * List media
+     *
+     * GET /social/accounts/{account_id}/gmb/media
+     */
+    public function gmbMedia(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/gmb/media', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Add photo
+     *
+     * POST /social/accounts/{account_id}/gmb/media
+     */
+    public function gmbCreateMedia(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/accounts/' . rawurlencode($accountId) . '/gmb/media', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Delete media
+     *
+     * DELETE /social/accounts/{account_id}/gmb/media
+     */
+    public function gmbDeleteMedia(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/social/accounts/' . rawurlencode($accountId) . '/gmb/media', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Get food menus
+     *
+     * GET /social/accounts/{account_id}/gmb/food-menus
+     */
+    public function gmbFoodMenus(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/gmb/food-menus', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Update food menus
+     *
+     * PUT /social/accounts/{account_id}/gmb/food-menus
+     */
+    public function gmbUpdateFoodMenus(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('PUT', '/social/accounts/' . rawurlencode($accountId) . '/gmb/food-menus', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * List place-action links
+     *
+     * GET /social/accounts/{account_id}/gmb/place-actions
+     */
+    public function gmbPlaceActions(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/gmb/place-actions', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Create place-action link
+     *
+     * POST /social/accounts/{account_id}/gmb/place-actions
+     */
+    public function gmbCreatePlaceAction(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/accounts/' . rawurlencode($accountId) . '/gmb/place-actions', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Delete place-action link
+     *
+     * DELETE /social/accounts/{account_id}/gmb/place-actions
+     */
+    public function gmbDeletePlaceAction(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/social/accounts/' . rawurlencode($accountId) . '/gmb/place-actions', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * List verifications
+     *
+     * GET /social/accounts/{account_id}/gmb/verifications
+     */
+    public function gmbVerifications(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/gmb/verifications', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Verification options
+     *
+     * POST /social/accounts/{account_id}/gmb/verifications/options
+     */
+    public function gmbVerificationOptions(string $accountId, array $body = [], array $options = []): array
+    {
+        return $this->client->request('POST', '/social/accounts/' . rawurlencode($accountId) . '/gmb/verifications/options', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
 }
