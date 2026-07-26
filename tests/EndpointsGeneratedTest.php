@@ -1481,6 +1481,90 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/x/mentions'], $this->calls[0]);
     }
 
+    public function test_social_sendTypingIndicator(): void
+    {
+        $sq = $this->client();
+        $sq->social->sendTypingIndicator('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/social/conversations/test-id/typing'], $this->calls[0]);
+    }
+
+    public function test_social_commentPrivateReply(): void
+    {
+        $sq = $this->client();
+        $sq->social->commentPrivateReply('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/comments/test-id/private-reply'], $this->calls[0]);
+    }
+
+    public function test_social_getMessengerMenu(): void
+    {
+        $sq = $this->client();
+        $sq->social->getMessengerMenu('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/messenger/menu'], $this->calls[0]);
+    }
+
+    public function test_social_setMessengerMenu(): void
+    {
+        $sq = $this->client();
+        $sq->social->setMessengerMenu('test-id', []);
+        $this->assertSame(['method' => 'PUT', 'path' => '/social/accounts/test-id/messenger/menu'], $this->calls[0]);
+    }
+
+    public function test_social_deleteMessengerMenu(): void
+    {
+        $sq = $this->client();
+        $sq->social->deleteMessengerMenu('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/social/accounts/test-id/messenger/menu'], $this->calls[0]);
+    }
+
+    public function test_social_getIceBreakers(): void
+    {
+        $sq = $this->client();
+        $sq->social->getIceBreakers('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/instagram/ice-breakers'], $this->calls[0]);
+    }
+
+    public function test_social_setIceBreakers(): void
+    {
+        $sq = $this->client();
+        $sq->social->setIceBreakers('test-id', []);
+        $this->assertSame(['method' => 'PUT', 'path' => '/social/accounts/test-id/instagram/ice-breakers'], $this->calls[0]);
+    }
+
+    public function test_social_deleteIceBreakers(): void
+    {
+        $sq = $this->client();
+        $sq->social->deleteIceBreakers('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/social/accounts/test-id/instagram/ice-breakers'], $this->calls[0]);
+    }
+
+    public function test_social_facebookPageInsights(): void
+    {
+        $sq = $this->client();
+        $sq->social->facebookPageInsights('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/facebook/page-insights'], $this->calls[0]);
+    }
+
+    public function test_social_instagramAudience(): void
+    {
+        $sq = $this->client();
+        $sq->social->instagramAudience('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/instagram/audience'], $this->calls[0]);
+    }
+
+    public function test_social_connectOptions(): void
+    {
+        $sq = $this->client();
+        $sq->social->connectOptions('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/connect-options'], $this->calls[0]);
+    }
+
+    public function test_social_connectSelect(): void
+    {
+        $sq = $this->client();
+        $sq->social->connectSelect('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/accounts/test-id/connect-select'], $this->calls[0]);
+    }
+
     public function test_urls_shorten(): void
     {
         $sq = $this->client();

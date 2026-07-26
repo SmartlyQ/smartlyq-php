@@ -993,4 +993,154 @@ class SocialResource
             'options' => $options,
         ]);
     }
+
+    /**
+     * Typing indicator
+     *
+     * POST /social/conversations/{conversation_id}/typing
+     */
+    public function sendTypingIndicator(string $conversationId, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/conversations/' . rawurlencode($conversationId) . '/typing', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Private reply (comment-to-DM)
+     *
+     * POST /social/comments/{comment_id}/private-reply
+     */
+    public function commentPrivateReply(string $commentId, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/comments/' . rawurlencode($commentId) . '/private-reply', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Get Messenger menu
+     *
+     * GET /social/accounts/{account_id}/messenger/menu
+     */
+    public function getMessengerMenu(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/messenger/menu', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Set Messenger menu
+     *
+     * PUT /social/accounts/{account_id}/messenger/menu
+     */
+    public function setMessengerMenu(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('PUT', '/social/accounts/' . rawurlencode($accountId) . '/messenger/menu', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Delete Messenger menu
+     *
+     * DELETE /social/accounts/{account_id}/messenger/menu
+     */
+    public function deleteMessengerMenu(string $accountId, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/social/accounts/' . rawurlencode($accountId) . '/messenger/menu', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Get ice breakers
+     *
+     * GET /social/accounts/{account_id}/instagram/ice-breakers
+     */
+    public function getIceBreakers(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/instagram/ice-breakers', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Set ice breakers
+     *
+     * PUT /social/accounts/{account_id}/instagram/ice-breakers
+     */
+    public function setIceBreakers(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('PUT', '/social/accounts/' . rawurlencode($accountId) . '/instagram/ice-breakers', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Delete ice breakers
+     *
+     * DELETE /social/accounts/{account_id}/instagram/ice-breakers
+     */
+    public function deleteIceBreakers(string $accountId, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/social/accounts/' . rawurlencode($accountId) . '/instagram/ice-breakers', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Facebook page insights
+     *
+     * GET /social/accounts/{account_id}/facebook/page-insights
+     */
+    public function facebookPageInsights(string $accountId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/facebook/page-insights', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Instagram audience demographics
+     *
+     * GET /social/accounts/{account_id}/instagram/audience
+     */
+    public function instagramAudience(string $accountId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/instagram/audience', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Connection target options
+     *
+     * GET /social/accounts/{account_id}/connect-options
+     */
+    public function connectOptions(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/connect-options', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Select connection target
+     *
+     * POST /social/accounts/{account_id}/connect-select
+     */
+    public function connectSelect(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/accounts/' . rawurlencode($accountId) . '/connect-select', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
 }
