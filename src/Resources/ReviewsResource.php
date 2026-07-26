@@ -42,6 +42,18 @@ class ReviewsResource
     }
 
     /**
+     * Delete review reply
+     *
+     * DELETE /reviews/{review_id}/reply
+     */
+    public function deleteReply(string $reviewId, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/reviews/' . rawurlencode($reviewId) . '/reply', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * Sync reviews
      *
      * POST /reviews/sync

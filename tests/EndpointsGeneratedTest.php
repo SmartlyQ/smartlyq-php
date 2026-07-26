@@ -767,6 +767,13 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'POST', 'path' => '/reviews/test-id/reply'], $this->calls[0]);
     }
 
+    public function test_reviews_deleteReply(): void
+    {
+        $sq = $this->client();
+        $sq->reviews->deleteReply('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/reviews/test-id/reply'], $this->calls[0]);
+    }
+
     public function test_reviews_sync(): void
     {
         $sq = $this->client();
@@ -1276,6 +1283,27 @@ final class EndpointsGeneratedTest extends TestCase
         $sq = $this->client();
         $sq->social->facebookPostReactions('test-id');
         $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/facebook/post-reactions'], $this->calls[0]);
+    }
+
+    public function test_social_instagramStoryInsights(): void
+    {
+        $sq = $this->client();
+        $sq->social->instagramStoryInsights('test-id', 'test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/instagram/stories/test-id/insights'], $this->calls[0]);
+    }
+
+    public function test_social_xRetweet(): void
+    {
+        $sq = $this->client();
+        $sq->social->xRetweet('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/accounts/test-id/x/retweets'], $this->calls[0]);
+    }
+
+    public function test_social_xUnretweet(): void
+    {
+        $sq = $this->client();
+        $sq->social->xUnretweet('test-id', 'test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/social/accounts/test-id/x/retweets/test-id'], $this->calls[0]);
     }
 
     public function test_urls_shorten(): void

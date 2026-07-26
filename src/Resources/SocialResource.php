@@ -664,4 +664,42 @@ class SocialResource
             'options' => $options,
         ]);
     }
+
+    /**
+     * Instagram story insights
+     *
+     * GET /social/accounts/{account_id}/instagram/stories/{story_id}/insights
+     */
+    public function instagramStoryInsights(string $accountId, string $storyId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/instagram/stories/' . rawurlencode($storyId) . '/insights', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Retweet on X
+     *
+     * POST /social/accounts/{account_id}/x/retweets
+     */
+    public function xRetweet(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/accounts/' . rawurlencode($accountId) . '/x/retweets', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Undo retweet
+     *
+     * DELETE /social/accounts/{account_id}/x/retweets/{tweet_id}
+     */
+    public function xUnretweet(string $accountId, string $tweetId, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/social/accounts/' . rawurlencode($accountId) . '/x/retweets/' . rawurlencode($tweetId), [
+            'options' => $options,
+        ]);
+    }
 }
