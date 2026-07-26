@@ -218,14 +218,13 @@ class CoreClient
             curl_setopt($handle, CURLOPT_POSTFIELDS, $body);
         }
 
+        // No curl_close(): it has been a no-op since PHP 8.0 and is deprecated in 8.5;
+        // the handle is freed when it goes out of scope.
         $responseBody = curl_exec($handle);
         if ($responseBody === false) {
-            $error = curl_error($handle);
-            curl_close($handle);
-            throw new \RuntimeException('cURL error: ' . $error);
+            throw new \RuntimeException('cURL error: ' . curl_error($handle));
         }
         $status = (int) curl_getinfo($handle, CURLINFO_RESPONSE_CODE);
-        curl_close($handle);
 
         return ['status' => $status, 'headers' => $responseHeaders, 'body' => (string) $responseBody];
     }
