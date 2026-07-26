@@ -117,4 +117,94 @@ class AnalyticsResource
             'options' => $options,
         ]);
     }
+
+    /**
+     * Inbox volume
+     *
+     * GET /analytics/inbox/volume
+     */
+    public function inboxVolume(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/analytics/inbox/volume', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Inbox heatmap
+     *
+     * GET /analytics/inbox/heatmap
+     */
+    public function inboxHeatmap(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/analytics/inbox/heatmap', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Inbox source breakdown
+     *
+     * GET /analytics/inbox/source-breakdown
+     */
+    public function inboxSourceBreakdown(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/analytics/inbox/source-breakdown', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Inbox response time
+     *
+     * GET /analytics/inbox/response-time
+     */
+    public function inboxResponseTime(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/analytics/inbox/response-time', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Inbox top accounts
+     *
+     * GET /analytics/inbox/top-accounts
+     */
+    public function inboxTopAccounts(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/analytics/inbox/top-accounts', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Inbox conversation stats
+     *
+     * GET /analytics/inbox/conversations
+     */
+    public function inboxConversations(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/analytics/inbox/conversations', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Conversation analytics
+     *
+     * GET /analytics/inbox/conversations/{conversation_id}
+     */
+    public function inboxConversationDetail(string $conversationId, array $options = []): array
+    {
+        return $this->client->request('GET', '/analytics/inbox/conversations/' . rawurlencode($conversationId), [
+            'options' => $options,
+        ]);
+    }
 }

@@ -117,6 +117,18 @@ class SocialResource
     }
 
     /**
+     * Disconnect a social account
+     *
+     * DELETE /social/accounts/{account_id}
+     */
+    public function disconnectAccount(string $accountId, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/social/accounts/' . rawurlencode($accountId), [
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * Account health
      *
      * GET /social/accounts/{account_id}/health
@@ -474,6 +486,44 @@ class SocialResource
     public function deleteAccountGroup(string $groupId, array $options = []): array
     {
         return $this->client->request('DELETE', '/social/account-groups/' . rawurlencode($groupId), [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Get conversation
+     *
+     * GET /social/conversations/{conversation_id}
+     */
+    public function getConversation(string $conversationId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/conversations/' . rawurlencode($conversationId), [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Archive / reopen conversation
+     *
+     * PATCH /social/conversations/{conversation_id}
+     */
+    public function updateConversation(string $conversationId, array $body, array $options = []): array
+    {
+        return $this->client->request('PATCH', '/social/conversations/' . rawurlencode($conversationId), [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Search conversations
+     *
+     * GET /social/conversations/search
+     */
+    public function searchConversations(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/social/conversations/search', [
+            'query' => $query,
             'options' => $options,
         ]);
     }

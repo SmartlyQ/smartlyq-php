@@ -11,9 +11,11 @@ use Smartlyq\Resources\CaptainResource;
 use Smartlyq\Resources\AnalyticsResource;
 use Smartlyq\Resources\ArticlesResource;
 use Smartlyq\Resources\AudioResource;
+use Smartlyq\Resources\AutomationsResource;
 use Smartlyq\Resources\ChatbotsResource;
 use Smartlyq\Resources\CommentsResource;
 use Smartlyq\Resources\ContentResource;
+use Smartlyq\Resources\CRMResource;
 use Smartlyq\Resources\ContactsResource;
 use Smartlyq\Resources\CustomFieldsResource;
 use Smartlyq\Resources\OpportunitiesResource;
@@ -23,6 +25,7 @@ use Smartlyq\Resources\JobsResource;
 use Smartlyq\Resources\MediaResource;
 use Smartlyq\Resources\PresentationsResource;
 use Smartlyq\Resources\ProfilesResource;
+use Smartlyq\Resources\ReviewsResource;
 use Smartlyq\Resources\SeoResource;
 use Smartlyq\Resources\ShortsResource;
 use Smartlyq\Resources\SocialResource;
@@ -62,6 +65,9 @@ class SmartlyQ
     /** Audio endpoints. */
     public readonly AudioResource $audio;
 
+    /** Automations endpoints. */
+    public readonly AutomationsResource $automations;
+
     /** Chatbot endpoints. */
     public readonly ChatbotsResource $chatbots;
 
@@ -70,6 +76,9 @@ class SmartlyQ
 
     /** Content endpoints. */
     public readonly ContentResource $content;
+
+    /** CRM endpoints. */
+    public readonly CRMResource $cRM;
 
     /** CRM Contacts endpoints. */
     public readonly ContactsResource $contacts;
@@ -97,6 +106,9 @@ class SmartlyQ
 
     /** Profiles endpoints. */
     public readonly ProfilesResource $profiles;
+
+    /** Reviews endpoints. */
+    public readonly ReviewsResource $reviews;
 
     /** SEO endpoints. */
     public readonly SeoResource $seo;
@@ -128,9 +140,11 @@ class SmartlyQ
         $this->analytics = new AnalyticsResource($this->client);
         $this->articles = new ArticlesResource($this->client);
         $this->audio = new AudioResource($this->client);
+        $this->automations = new AutomationsResource($this->client);
         $this->chatbots = new ChatbotsResource($this->client);
         $this->comments = new CommentsResource($this->client);
         $this->content = new ContentResource($this->client);
+        $this->cRM = new CRMResource($this->client);
         $this->contacts = new ContactsResource($this->client);
         $this->customFields = new CustomFieldsResource($this->client);
         $this->opportunities = new OpportunitiesResource($this->client);
@@ -140,6 +154,7 @@ class SmartlyQ
         $this->media = new MediaResource($this->client);
         $this->presentations = new PresentationsResource($this->client);
         $this->profiles = new ProfilesResource($this->client);
+        $this->reviews = new ReviewsResource($this->client);
         $this->seo = new SeoResource($this->client);
         $this->shorts = new ShortsResource($this->client);
         $this->social = new SocialResource($this->client);

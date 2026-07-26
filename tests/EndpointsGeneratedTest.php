@@ -130,6 +130,55 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'GET', 'path' => '/analytics/posts/test-id/timeline'], $this->calls[0]);
     }
 
+    public function test_analytics_inboxVolume(): void
+    {
+        $sq = $this->client();
+        $sq->analytics->inboxVolume();
+        $this->assertSame(['method' => 'GET', 'path' => '/analytics/inbox/volume'], $this->calls[0]);
+    }
+
+    public function test_analytics_inboxHeatmap(): void
+    {
+        $sq = $this->client();
+        $sq->analytics->inboxHeatmap();
+        $this->assertSame(['method' => 'GET', 'path' => '/analytics/inbox/heatmap'], $this->calls[0]);
+    }
+
+    public function test_analytics_inboxSourceBreakdown(): void
+    {
+        $sq = $this->client();
+        $sq->analytics->inboxSourceBreakdown();
+        $this->assertSame(['method' => 'GET', 'path' => '/analytics/inbox/source-breakdown'], $this->calls[0]);
+    }
+
+    public function test_analytics_inboxResponseTime(): void
+    {
+        $sq = $this->client();
+        $sq->analytics->inboxResponseTime();
+        $this->assertSame(['method' => 'GET', 'path' => '/analytics/inbox/response-time'], $this->calls[0]);
+    }
+
+    public function test_analytics_inboxTopAccounts(): void
+    {
+        $sq = $this->client();
+        $sq->analytics->inboxTopAccounts();
+        $this->assertSame(['method' => 'GET', 'path' => '/analytics/inbox/top-accounts'], $this->calls[0]);
+    }
+
+    public function test_analytics_inboxConversations(): void
+    {
+        $sq = $this->client();
+        $sq->analytics->inboxConversations();
+        $this->assertSame(['method' => 'GET', 'path' => '/analytics/inbox/conversations'], $this->calls[0]);
+    }
+
+    public function test_analytics_inboxConversationDetail(): void
+    {
+        $sq = $this->client();
+        $sq->analytics->inboxConversationDetail('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/analytics/inbox/conversations/test-id'], $this->calls[0]);
+    }
+
     public function test_articles_generate(): void
     {
         $sq = $this->client();
@@ -177,6 +226,55 @@ final class EndpointsGeneratedTest extends TestCase
         $sq = $this->client();
         $sq->audio->get('test-id');
         $this->assertSame(['method' => 'GET', 'path' => '/audio/test-id'], $this->calls[0]);
+    }
+
+    public function test_automations_list(): void
+    {
+        $sq = $this->client();
+        $sq->automations->list();
+        $this->assertSame(['method' => 'GET', 'path' => '/automations'], $this->calls[0]);
+    }
+
+    public function test_automations_get(): void
+    {
+        $sq = $this->client();
+        $sq->automations->get('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/automations/test-id'], $this->calls[0]);
+    }
+
+    public function test_automations_activate(): void
+    {
+        $sq = $this->client();
+        $sq->automations->activate('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/automations/test-id/activate'], $this->calls[0]);
+    }
+
+    public function test_automations_deactivate(): void
+    {
+        $sq = $this->client();
+        $sq->automations->deactivate('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/automations/test-id/deactivate'], $this->calls[0]);
+    }
+
+    public function test_automations_trigger(): void
+    {
+        $sq = $this->client();
+        $sq->automations->trigger('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/automations/test-id/trigger'], $this->calls[0]);
+    }
+
+    public function test_automations_listRuns(): void
+    {
+        $sq = $this->client();
+        $sq->automations->listRuns('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/automations/test-id/runs'], $this->calls[0]);
+    }
+
+    public function test_automations_getRun(): void
+    {
+        $sq = $this->client();
+        $sq->automations->getRun('test-id', 'test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/automations/test-id/runs/test-id'], $this->calls[0]);
     }
 
     public function test_chatbots_list(): void
@@ -289,6 +387,20 @@ final class EndpointsGeneratedTest extends TestCase
         $sq = $this->client();
         $sq->content->generateCaption([]);
         $this->assertSame(['method' => 'POST', 'path' => '/content/caption'], $this->calls[0]);
+    }
+
+    public function test_cRM_deleteContact(): void
+    {
+        $sq = $this->client();
+        $sq->cRM->deleteContact('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/contacts/test-id'], $this->calls[0]);
+    }
+
+    public function test_cRM_bulkImportContacts(): void
+    {
+        $sq = $this->client();
+        $sq->cRM->bulkImportContacts([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/contacts/bulk'], $this->calls[0]);
     }
 
     public function test_contacts_list(): void
@@ -641,6 +753,27 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'GET', 'path' => '/me/account-billing'], $this->calls[0]);
     }
 
+    public function test_reviews_list(): void
+    {
+        $sq = $this->client();
+        $sq->reviews->list();
+        $this->assertSame(['method' => 'GET', 'path' => '/reviews'], $this->calls[0]);
+    }
+
+    public function test_reviews_replyTo(): void
+    {
+        $sq = $this->client();
+        $sq->reviews->replyTo('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/reviews/test-id/reply'], $this->calls[0]);
+    }
+
+    public function test_reviews_sync(): void
+    {
+        $sq = $this->client();
+        $sq->reviews->sync([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/reviews/sync'], $this->calls[0]);
+    }
+
     public function test_seo_keywordResearch(): void
     {
         $sq = $this->client();
@@ -835,6 +968,13 @@ final class EndpointsGeneratedTest extends TestCase
         $sq = $this->client();
         $sq->social->updateAccount('test-id', []);
         $this->assertSame(['method' => 'PATCH', 'path' => '/social/accounts/test-id'], $this->calls[0]);
+    }
+
+    public function test_social_disconnectAccount(): void
+    {
+        $sq = $this->client();
+        $sq->social->disconnectAccount('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/social/accounts/test-id'], $this->calls[0]);
     }
 
     public function test_social_getAccountHealth(): void
@@ -1038,6 +1178,27 @@ final class EndpointsGeneratedTest extends TestCase
         $sq = $this->client();
         $sq->social->deleteAccountGroup('test-id');
         $this->assertSame(['method' => 'DELETE', 'path' => '/social/account-groups/test-id'], $this->calls[0]);
+    }
+
+    public function test_social_getConversation(): void
+    {
+        $sq = $this->client();
+        $sq->social->getConversation('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/conversations/test-id'], $this->calls[0]);
+    }
+
+    public function test_social_updateConversation(): void
+    {
+        $sq = $this->client();
+        $sq->social->updateConversation('test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/social/conversations/test-id'], $this->calls[0]);
+    }
+
+    public function test_social_searchConversations(): void
+    {
+        $sq = $this->client();
+        $sq->social->searchConversations();
+        $this->assertSame(['method' => 'GET', 'path' => '/social/conversations/search'], $this->calls[0]);
     }
 
     public function test_urls_shorten(): void
