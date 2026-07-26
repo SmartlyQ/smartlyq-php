@@ -795,11 +795,11 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'DELETE', 'path' => '/social/posts/test-id'], $this->calls[0]);
     }
 
-    public function test_social_disconnectAccount(): void
+    public function test_social_updateAccount(): void
     {
         $sq = $this->client();
-        $sq->social->disconnectAccount('test-id');
-        $this->assertSame(['method' => 'DELETE', 'path' => '/social/accounts/test-id'], $this->calls[0]);
+        $sq->social->updateAccount('test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/social/accounts/test-id'], $this->calls[0]);
     }
 
     public function test_social_getAccountHealth(): void
@@ -849,6 +849,160 @@ final class EndpointsGeneratedTest extends TestCase
         $sq = $this->client();
         $sq->social->connectAccount('test-id', []);
         $this->assertSame(['method' => 'POST', 'path' => '/social/connect/test-id'], $this->calls[0]);
+    }
+
+    public function test_social_listQueues(): void
+    {
+        $sq = $this->client();
+        $sq->social->listQueues();
+        $this->assertSame(['method' => 'GET', 'path' => '/social/queues'], $this->calls[0]);
+    }
+
+    public function test_social_createQueue(): void
+    {
+        $sq = $this->client();
+        $sq->social->createQueue([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/queues'], $this->calls[0]);
+    }
+
+    public function test_social_getQueue(): void
+    {
+        $sq = $this->client();
+        $sq->social->getQueue('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/queues/test-id'], $this->calls[0]);
+    }
+
+    public function test_social_updateQueue(): void
+    {
+        $sq = $this->client();
+        $sq->social->updateQueue('test-id', []);
+        $this->assertSame(['method' => 'PUT', 'path' => '/social/queues/test-id'], $this->calls[0]);
+    }
+
+    public function test_social_deleteQueue(): void
+    {
+        $sq = $this->client();
+        $sq->social->deleteQueue('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/social/queues/test-id'], $this->calls[0]);
+    }
+
+    public function test_social_getQueueNextSlot(): void
+    {
+        $sq = $this->client();
+        $sq->social->getQueueNextSlot('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/queues/test-id/next-slot'], $this->calls[0]);
+    }
+
+    public function test_social_previewQueueSlots(): void
+    {
+        $sq = $this->client();
+        $sq->social->previewQueueSlots('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/queues/test-id/preview'], $this->calls[0]);
+    }
+
+    public function test_social_unpublishPost(): void
+    {
+        $sq = $this->client();
+        $sq->social->unpublishPost('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/posts/test-id/unpublish'], $this->calls[0]);
+    }
+
+    public function test_social_validatePost(): void
+    {
+        $sq = $this->client();
+        $sq->social->validatePost([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/validate/post'], $this->calls[0]);
+    }
+
+    public function test_social_validateMedia(): void
+    {
+        $sq = $this->client();
+        $sq->social->validateMedia([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/validate/media'], $this->calls[0]);
+    }
+
+    public function test_social_stopPostRecycle(): void
+    {
+        $sq = $this->client();
+        $sq->social->stopPostRecycle('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/social/posts/test-id/recycle'], $this->calls[0]);
+    }
+
+    public function test_social_bulkSchedulePosts(): void
+    {
+        $sq = $this->client();
+        $sq->social->bulkSchedulePosts([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/posts/bulk'], $this->calls[0]);
+    }
+
+    public function test_social_validateBulkBatch(): void
+    {
+        $sq = $this->client();
+        $sq->social->validateBulkBatch([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/posts/bulk/validate'], $this->calls[0]);
+    }
+
+    public function test_social_bulkAccountHealth(): void
+    {
+        $sq = $this->client();
+        $sq->social->bulkAccountHealth();
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/health'], $this->calls[0]);
+    }
+
+    public function test_social_accountFollowerStats(): void
+    {
+        $sq = $this->client();
+        $sq->social->accountFollowerStats();
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/follower-stats'], $this->calls[0]);
+    }
+
+    public function test_social_tiktokCreatorInfo(): void
+    {
+        $sq = $this->client();
+        $sq->social->tiktokCreatorInfo('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/tiktok/creator-info'], $this->calls[0]);
+    }
+
+    public function test_social_moveAccount(): void
+    {
+        $sq = $this->client();
+        $sq->social->moveAccount('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/accounts/test-id/move'], $this->calls[0]);
+    }
+
+    public function test_social_listAccountGroups(): void
+    {
+        $sq = $this->client();
+        $sq->social->listAccountGroups();
+        $this->assertSame(['method' => 'GET', 'path' => '/social/account-groups'], $this->calls[0]);
+    }
+
+    public function test_social_createAccountGroup(): void
+    {
+        $sq = $this->client();
+        $sq->social->createAccountGroup([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/account-groups'], $this->calls[0]);
+    }
+
+    public function test_social_getAccountGroup(): void
+    {
+        $sq = $this->client();
+        $sq->social->getAccountGroup('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/account-groups/test-id'], $this->calls[0]);
+    }
+
+    public function test_social_updateAccountGroup(): void
+    {
+        $sq = $this->client();
+        $sq->social->updateAccountGroup('test-id', []);
+        $this->assertSame(['method' => 'PUT', 'path' => '/social/account-groups/test-id'], $this->calls[0]);
+    }
+
+    public function test_social_deleteAccountGroup(): void
+    {
+        $sq = $this->client();
+        $sq->social->deleteAccountGroup('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/social/account-groups/test-id'], $this->calls[0]);
     }
 
     public function test_urls_shorten(): void
@@ -963,11 +1117,32 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'POST', 'path' => '/webhooks'], $this->calls[0]);
     }
 
+    public function test_webhooks_update(): void
+    {
+        $sq = $this->client();
+        $sq->webhooks->update('test-id', []);
+        $this->assertSame(['method' => 'PUT', 'path' => '/webhooks/test-id'], $this->calls[0]);
+    }
+
     public function test_webhooks_delete(): void
     {
         $sq = $this->client();
         $sq->webhooks->delete('test-id');
         $this->assertSame(['method' => 'DELETE', 'path' => '/webhooks/test-id'], $this->calls[0]);
+    }
+
+    public function test_webhooks_listLogs(): void
+    {
+        $sq = $this->client();
+        $sq->webhooks->listLogs();
+        $this->assertSame(['method' => 'GET', 'path' => '/webhooks/logs'], $this->calls[0]);
+    }
+
+    public function test_webhooks_test(): void
+    {
+        $sq = $this->client();
+        $sq->webhooks->test('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/webhooks/test-id/test'], $this->calls[0]);
     }
 
     public function test_workspaces_list(): void

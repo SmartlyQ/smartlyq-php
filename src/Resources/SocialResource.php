@@ -104,13 +104,14 @@ class SocialResource
     }
 
     /**
-     * Disconnect a social account
+     * Rename account
      *
-     * DELETE /social/accounts/{account_id}
+     * PATCH /social/accounts/{account_id}
      */
-    public function disconnectAccount(string $accountId, array $options = []): array
+    public function updateAccount(string $accountId, array $body, array $options = []): array
     {
-        return $this->client->request('DELETE', '/social/accounts/' . rawurlencode($accountId), [
+        return $this->client->request('PATCH', '/social/accounts/' . rawurlencode($accountId), [
+            'body' => $body,
             'options' => $options,
         ]);
     }
@@ -197,6 +198,282 @@ class SocialResource
     {
         return $this->client->request('POST', '/social/connect/' . rawurlencode($platform), [
             'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * List queues
+     *
+     * GET /social/queues
+     */
+    public function listQueues(array $options = []): array
+    {
+        return $this->client->request('GET', '/social/queues', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Create queue
+     *
+     * POST /social/queues
+     */
+    public function createQueue(array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/queues', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Get queue
+     *
+     * GET /social/queues/{queue_id}
+     */
+    public function getQueue(string $queueId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/queues/' . rawurlencode($queueId), [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Update queue
+     *
+     * PUT /social/queues/{queue_id}
+     */
+    public function updateQueue(string $queueId, array $body, array $options = []): array
+    {
+        return $this->client->request('PUT', '/social/queues/' . rawurlencode($queueId), [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Delete queue
+     *
+     * DELETE /social/queues/{queue_id}
+     */
+    public function deleteQueue(string $queueId, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/social/queues/' . rawurlencode($queueId), [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Get next open slot
+     *
+     * GET /social/queues/{queue_id}/next-slot
+     */
+    public function getQueueNextSlot(string $queueId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/queues/' . rawurlencode($queueId) . '/next-slot', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Preview upcoming slots
+     *
+     * GET /social/queues/{queue_id}/preview
+     */
+    public function previewQueueSlots(string $queueId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/social/queues/' . rawurlencode($queueId) . '/preview', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Unpublish post
+     *
+     * POST /social/posts/{post_id}/unpublish
+     */
+    public function unpublishPost(string $postId, array $body = [], array $options = []): array
+    {
+        return $this->client->request('POST', '/social/posts/' . rawurlencode($postId) . '/unpublish', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Validate post content
+     *
+     * POST /social/validate/post
+     */
+    public function validatePost(array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/validate/post', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Validate media URL
+     *
+     * POST /social/validate/media
+     */
+    public function validateMedia(array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/validate/media', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Stop recycling
+     *
+     * DELETE /social/posts/{post_id}/recycle
+     */
+    public function stopPostRecycle(string $postId, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/social/posts/' . rawurlencode($postId) . '/recycle', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Bulk schedule posts
+     *
+     * POST /social/posts/bulk
+     */
+    public function bulkSchedulePosts(array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/posts/bulk', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Validate a bulk batch
+     *
+     * POST /social/posts/bulk/validate
+     */
+    public function validateBulkBatch(array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/posts/bulk/validate', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Bulk account health
+     *
+     * GET /social/accounts/health
+     */
+    public function bulkAccountHealth(array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/health', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Follower stats
+     *
+     * GET /social/accounts/follower-stats
+     */
+    public function accountFollowerStats(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/follower-stats', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * TikTok creator info
+     *
+     * GET /social/accounts/{account_id}/tiktok/creator-info
+     */
+    public function tiktokCreatorInfo(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/tiktok/creator-info', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Move account to profile
+     *
+     * POST /social/accounts/{account_id}/move
+     */
+    public function moveAccount(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/accounts/' . rawurlencode($accountId) . '/move', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * List account groups
+     *
+     * GET /social/account-groups
+     */
+    public function listAccountGroups(array $options = []): array
+    {
+        return $this->client->request('GET', '/social/account-groups', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Create account group
+     *
+     * POST /social/account-groups
+     */
+    public function createAccountGroup(array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/account-groups', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Get account group
+     *
+     * GET /social/account-groups/{group_id}
+     */
+    public function getAccountGroup(string $groupId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/account-groups/' . rawurlencode($groupId), [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Update account group
+     *
+     * PUT /social/account-groups/{group_id}
+     */
+    public function updateAccountGroup(string $groupId, array $body, array $options = []): array
+    {
+        return $this->client->request('PUT', '/social/account-groups/' . rawurlencode($groupId), [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Delete account group
+     *
+     * DELETE /social/account-groups/{group_id}
+     */
+    public function deleteAccountGroup(string $groupId, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/social/account-groups/' . rawurlencode($groupId), [
             'options' => $options,
         ]);
     }

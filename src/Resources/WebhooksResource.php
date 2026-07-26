@@ -41,6 +41,19 @@ class WebhooksResource
     }
 
     /**
+     * Update webhook
+     *
+     * PUT /webhooks/{id}
+     */
+    public function update(string $id, array $body, array $options = []): array
+    {
+        return $this->client->request('PUT', '/webhooks/' . rawurlencode($id), [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * Delete webhook
      *
      * DELETE /webhooks/{id}
@@ -48,6 +61,31 @@ class WebhooksResource
     public function delete(string $id, array $options = []): array
     {
         return $this->client->request('DELETE', '/webhooks/' . rawurlencode($id), [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * List webhook delivery logs
+     *
+     * GET /webhooks/logs
+     */
+    public function listLogs(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/webhooks/logs', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Send test webhook
+     *
+     * POST /webhooks/{id}/test
+     */
+    public function test(string $id, array $options = []): array
+    {
+        return $this->client->request('POST', '/webhooks/' . rawurlencode($id) . '/test', [
             'options' => $options,
         ]);
     }
