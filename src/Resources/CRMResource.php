@@ -28,6 +28,19 @@ class CRMResource
     }
 
     /**
+     * Update custom field
+     *
+     * PATCH /custom-fields/{id}
+     */
+    public function updateCustomField(string $id, array $body, array $options = []): array
+    {
+        return $this->client->request('PATCH', '/custom-fields/' . rawurlencode($id), [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * Bulk import contacts
      *
      * POST /contacts/bulk
@@ -36,6 +49,18 @@ class CRMResource
     {
         return $this->client->request('POST', '/contacts/bulk', [
             'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Contact channels
+     *
+     * GET /contacts/{id}/channels
+     */
+    public function contactChannels(string $id, array $options = []): array
+    {
+        return $this->client->request('GET', '/contacts/' . rawurlencode($id) . '/channels', [
             'options' => $options,
         ]);
     }

@@ -396,11 +396,25 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'DELETE', 'path' => '/contacts/test-id'], $this->calls[0]);
     }
 
+    public function test_cRM_updateCustomField(): void
+    {
+        $sq = $this->client();
+        $sq->cRM->updateCustomField('test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/custom-fields/test-id'], $this->calls[0]);
+    }
+
     public function test_cRM_bulkImportContacts(): void
     {
         $sq = $this->client();
         $sq->cRM->bulkImportContacts([]);
         $this->assertSame(['method' => 'POST', 'path' => '/contacts/bulk'], $this->calls[0]);
+    }
+
+    public function test_cRM_contactChannels(): void
+    {
+        $sq = $this->client();
+        $sq->cRM->contactChannels('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/contacts/test-id/channels'], $this->calls[0]);
     }
 
     public function test_contacts_list(): void
@@ -1425,6 +1439,13 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'POST', 'path' => '/social/accounts/test-id/gmb/place-actions'], $this->calls[0]);
     }
 
+    public function test_social_gmbUpdatePlaceAction(): void
+    {
+        $sq = $this->client();
+        $sq->social->gmbUpdatePlaceAction('test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/social/accounts/test-id/gmb/place-actions'], $this->calls[0]);
+    }
+
     public function test_social_gmbDeletePlaceAction(): void
     {
         $sq = $this->client();
@@ -1444,6 +1465,20 @@ final class EndpointsGeneratedTest extends TestCase
         $sq = $this->client();
         $sq->social->gmbVerificationOptions('test-id', []);
         $this->assertSame(['method' => 'POST', 'path' => '/social/accounts/test-id/gmb/verifications/options'], $this->calls[0]);
+    }
+
+    public function test_social_redditSubredditInfo(): void
+    {
+        $sq = $this->client();
+        $sq->social->redditSubredditInfo('test-id', 'test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/reddit/subreddits/test-id'], $this->calls[0]);
+    }
+
+    public function test_social_xMentions(): void
+    {
+        $sq = $this->client();
+        $sq->social->xMentions('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/x/mentions'], $this->calls[0]);
     }
 
     public function test_urls_shorten(): void

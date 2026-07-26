@@ -919,6 +919,19 @@ class SocialResource
     }
 
     /**
+     * Update place-action link
+     *
+     * PATCH /social/accounts/{account_id}/gmb/place-actions
+     */
+    public function gmbUpdatePlaceAction(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('PATCH', '/social/accounts/' . rawurlencode($accountId) . '/gmb/place-actions', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * Delete place-action link
      *
      * DELETE /social/accounts/{account_id}/gmb/place-actions
@@ -952,6 +965,31 @@ class SocialResource
     {
         return $this->client->request('POST', '/social/accounts/' . rawurlencode($accountId) . '/gmb/verifications/options', [
             'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Subreddit info + eligibility
+     *
+     * GET /social/accounts/{account_id}/reddit/subreddits/{subreddit}
+     */
+    public function redditSubredditInfo(string $accountId, string $subreddit, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/reddit/subreddits/' . rawurlencode($subreddit), [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * X mentions
+     *
+     * GET /social/accounts/{account_id}/x/mentions
+     */
+    public function xMentions(string $accountId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/x/mentions', [
+            'query' => $query,
             'options' => $options,
         ]);
     }
