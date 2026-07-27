@@ -64,4 +64,17 @@ class MediaResource
             'options' => $options,
         ]);
     }
+
+    /**
+     * Upload a file directly
+     *
+     * POST /media/upload-direct
+     */
+    public function uploadDirect(array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/media/upload-direct', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
 }

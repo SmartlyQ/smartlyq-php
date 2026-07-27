@@ -54,6 +54,19 @@ class ProfilesResource
     }
 
     /**
+     * Update a profile
+     *
+     * PATCH /profiles/{id}
+     */
+    public function update(string $id, array $body, array $options = []): array
+    {
+        return $this->client->request('PATCH', '/profiles/' . rawurlencode($id), [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * Delete a profile
      *
      * DELETE /profiles/{id}

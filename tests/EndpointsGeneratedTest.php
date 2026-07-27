@@ -669,6 +669,13 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'POST', 'path' => '/media/upload-url'], $this->calls[0]);
     }
 
+    public function test_media_uploadDirect(): void
+    {
+        $sq = $this->client();
+        $sq->media->uploadDirect([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/media/upload-direct'], $this->calls[0]);
+    }
+
     public function test_presentations_generate(): void
     {
         $sq = $this->client();
@@ -716,6 +723,13 @@ final class EndpointsGeneratedTest extends TestCase
         $sq = $this->client();
         $sq->profiles->get('test-id');
         $this->assertSame(['method' => 'GET', 'path' => '/profiles/test-id'], $this->calls[0]);
+    }
+
+    public function test_profiles_update(): void
+    {
+        $sq = $this->client();
+        $sq->profiles->update('test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/profiles/test-id'], $this->calls[0]);
     }
 
     public function test_profiles_delete(): void
