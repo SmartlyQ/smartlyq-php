@@ -53,6 +53,13 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'GET', 'path' => '/me/balance'], $this->calls[0]);
     }
 
+    public function test_account_getBilling(): void
+    {
+        $sq = $this->client();
+        $sq->account->getBilling();
+        $this->assertSame(['method' => 'GET', 'path' => '/me/billing'], $this->calls[0]);
+    }
+
     public function test_captain_sendMessage(): void
     {
         $sq = $this->client();
@@ -375,6 +382,13 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'DELETE', 'path' => '/social/comments/test-id'], $this->calls[0]);
     }
 
+    public function test_comments_getPost(): void
+    {
+        $sq = $this->client();
+        $sq->comments->getPost('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/comments/test-id'], $this->calls[0]);
+    }
+
     public function test_content_rewrite(): void
     {
         $sq = $this->client();
@@ -485,6 +499,20 @@ final class EndpointsGeneratedTest extends TestCase
         $sq = $this->client();
         $sq->contacts->addMessage('test-id', []);
         $this->assertSame(['method' => 'POST', 'path' => '/contacts/test-id/messages'], $this->calls[0]);
+    }
+
+    public function test_contacts_setField(): void
+    {
+        $sq = $this->client();
+        $sq->contacts->setField('test-id', 'test-id', []);
+        $this->assertSame(['method' => 'PUT', 'path' => '/contacts/test-id/fields/test-id'], $this->calls[0]);
+    }
+
+    public function test_contacts_clearField(): void
+    {
+        $sq = $this->client();
+        $sq->contacts->clearField('test-id', 'test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/contacts/test-id/fields/test-id'], $this->calls[0]);
     }
 
     public function test_customFields_list(): void

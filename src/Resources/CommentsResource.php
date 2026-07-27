@@ -64,4 +64,16 @@ class CommentsResource
             'options' => $options,
         ]);
     }
+
+    /**
+     * Get one post's comments (threaded)
+     *
+     * GET /social/comments/{post_id}
+     */
+    public function getPost(string $postId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/comments/' . rawurlencode($postId), [
+            'options' => $options,
+        ]);
+    }
 }

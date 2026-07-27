@@ -142,4 +142,29 @@ class ContactsResource
             'options' => $options,
         ]);
     }
+
+    /**
+     * Set one custom field
+     *
+     * PUT /contacts/{id}/fields/{slug}
+     */
+    public function setField(string $id, string $slug, array $body, array $options = []): array
+    {
+        return $this->client->request('PUT', '/contacts/' . rawurlencode($id) . '/fields/' . rawurlencode($slug), [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Clear one custom field
+     *
+     * DELETE /contacts/{id}/fields/{slug}
+     */
+    public function clearField(string $id, string $slug, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/contacts/' . rawurlencode($id) . '/fields/' . rawurlencode($slug), [
+            'options' => $options,
+        ]);
+    }
 }

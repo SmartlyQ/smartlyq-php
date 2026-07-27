@@ -51,4 +51,16 @@ class AccountResource
             'options' => $options,
         ]);
     }
+
+    /**
+     * Billing overview
+     *
+     * GET /me/billing
+     */
+    public function getBilling(array $options = []): array
+    {
+        return $this->client->request('GET', '/me/billing', [
+            'options' => $options,
+        ]);
+    }
 }
