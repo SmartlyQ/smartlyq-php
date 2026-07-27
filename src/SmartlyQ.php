@@ -32,6 +32,7 @@ use Smartlyq\Resources\SocialResource;
 use Smartlyq\Resources\UrlsResource;
 use Smartlyq\Resources\VideosResource;
 use Smartlyq\Resources\WebhooksResource;
+use Smartlyq\Resources\WhatsAppResource;
 use Smartlyq\Resources\WorkspacesResource;
 
 /**
@@ -128,6 +129,9 @@ class SmartlyQ
     /** Webhooks endpoints. */
     public readonly WebhooksResource $webhooks;
 
+    /** WhatsApp endpoints. */
+    public readonly WhatsAppResource $whatsApp;
+
     /** Workspaces endpoints. */
     public readonly WorkspacesResource $workspaces;
 
@@ -161,6 +165,7 @@ class SmartlyQ
         $this->urls = new UrlsResource($this->client);
         $this->videos = new VideosResource($this->client);
         $this->webhooks = new WebhooksResource($this->client);
+        $this->whatsApp = new WhatsAppResource($this->client);
         $this->workspaces = new WorkspacesResource($this->client);
     }
 }

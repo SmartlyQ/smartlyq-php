@@ -1747,6 +1747,48 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'POST', 'path' => '/webhooks/test-id/test'], $this->calls[0]);
     }
 
+    public function test_whatsApp_sendWhatsAppMessage(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->sendWhatsAppMessage([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/whatsapp/messages'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_listWhatsAppTemplates(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->listWhatsAppTemplates();
+        $this->assertSame(['method' => 'GET', 'path' => '/whatsapp/templates'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_createWhatsAppTemplate(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->createWhatsAppTemplate([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/whatsapp/templates'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_getWhatsAppBusinessProfile(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->getWhatsAppBusinessProfile();
+        $this->assertSame(['method' => 'GET', 'path' => '/whatsapp/business-profile'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_updateWhatsAppBusinessProfile(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->updateWhatsAppBusinessProfile([]);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/whatsapp/business-profile'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_listWhatsAppPhoneNumbers(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->listWhatsAppPhoneNumbers();
+        $this->assertSame(['method' => 'GET', 'path' => '/whatsapp/phone-numbers'], $this->calls[0]);
+    }
+
     public function test_workspaces_list(): void
     {
         $sq = $this->client();
