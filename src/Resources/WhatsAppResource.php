@@ -92,4 +92,82 @@ class WhatsAppResource
             'options' => $options,
         ]);
     }
+
+    /**
+     * Get a WhatsApp template
+     *
+     * GET /whatsapp/templates/{name}
+     */
+    public function getTemplate(string $name, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/whatsapp/templates/' . rawurlencode($name), [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Update a WhatsApp template
+     *
+     * PATCH /whatsapp/templates/{name}
+     */
+    public function updateTemplate(string $name, array $body, array $options = []): array
+    {
+        return $this->client->request('PATCH', '/whatsapp/templates/' . rawurlencode($name), [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Delete a WhatsApp template
+     *
+     * DELETE /whatsapp/templates/{name}
+     */
+    public function deleteTemplate(string $name, array $query = [], array $options = []): array
+    {
+        return $this->client->request('DELETE', '/whatsapp/templates/' . rawurlencode($name), [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Set the WhatsApp profile photo
+     *
+     * POST /whatsapp/business-profile/photo
+     */
+    public function updateProfilePhoto(array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/whatsapp/business-profile/photo', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Get the WhatsApp display name
+     *
+     * GET /whatsapp/business-profile/display-name
+     */
+    public function getDisplayName(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/whatsapp/business-profile/display-name', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Request a WhatsApp display-name change
+     *
+     * POST /whatsapp/business-profile/display-name
+     */
+    public function updateDisplayName(array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/whatsapp/business-profile/display-name', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
 }

@@ -207,4 +207,56 @@ class AnalyticsResource
             'options' => $options,
         ]);
     }
+
+    /**
+     * YouTube channel insights
+     *
+     * GET /analytics/youtube/channel-insights
+     */
+    public function getYoutubeChannelInsights(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/analytics/youtube/channel-insights', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * YouTube daily views
+     *
+     * GET /analytics/youtube/daily-views
+     */
+    public function getYoutubeDailyViews(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/analytics/youtube/daily-views', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * YouTube audience retention
+     *
+     * GET /analytics/youtube/video-retention
+     */
+    public function getYoutubeVideoRetention(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/analytics/youtube/video-retention', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * YouTube viewer demographics
+     *
+     * GET /analytics/youtube/demographics
+     */
+    public function getYoutubeDemographics(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/analytics/youtube/demographics', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
 }

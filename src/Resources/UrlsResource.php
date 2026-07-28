@@ -76,4 +76,17 @@ class UrlsResource
             'options' => $options,
         ]);
     }
+
+    /**
+     * Update a short URL
+     *
+     * PATCH /urls/{id}
+     */
+    public function updateShort(string $id, array $body, array $options = []): array
+    {
+        return $this->client->request('PATCH', '/urls/' . rawurlencode($id), [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
 }

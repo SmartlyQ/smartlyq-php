@@ -89,4 +89,16 @@ class WebhooksResource
             'options' => $options,
         ]);
     }
+
+    /**
+     * Replay a webhook delivery
+     *
+     * POST /webhooks/deliveries/{id}/replay
+     */
+    public function replayDelivery(string $id, array $options = []): array
+    {
+        return $this->client->request('POST', '/webhooks/deliveries/' . rawurlencode($id) . '/replay', [
+            'options' => $options,
+        ]);
+    }
 }

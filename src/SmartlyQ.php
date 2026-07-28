@@ -22,6 +22,7 @@ use Smartlyq\Resources\OpportunitiesResource;
 use Smartlyq\Resources\MessagesResource;
 use Smartlyq\Resources\ImagesResource;
 use Smartlyq\Resources\JobsResource;
+use Smartlyq\Resources\LogsResource;
 use Smartlyq\Resources\MediaResource;
 use Smartlyq\Resources\PresentationsResource;
 use Smartlyq\Resources\ProfilesResource;
@@ -99,6 +100,9 @@ class SmartlyQ
     /** Jobs endpoints. */
     public readonly JobsResource $jobs;
 
+    /** Logs endpoints. */
+    public readonly LogsResource $logs;
+
     /** Media endpoints. */
     public readonly MediaResource $media;
 
@@ -155,6 +159,7 @@ class SmartlyQ
         $this->messages = new MessagesResource($this->client);
         $this->images = new ImagesResource($this->client);
         $this->jobs = new JobsResource($this->client);
+        $this->logs = new LogsResource($this->client);
         $this->media = new MediaResource($this->client);
         $this->presentations = new PresentationsResource($this->client);
         $this->profiles = new ProfilesResource($this->client);

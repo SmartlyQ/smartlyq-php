@@ -65,4 +65,29 @@ class MessagesResource
             'options' => $options,
         ]);
     }
+
+    /**
+     * React to a message
+     *
+     * POST /social/conversations/{conversation_id}/messages/{message_id}/reactions
+     */
+    public function reactTo(string $conversationId, string $messageId, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/conversations/' . rawurlencode($conversationId) . '/messages/' . rawurlencode($messageId) . '/reactions', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Remove a message reaction
+     *
+     * DELETE /social/conversations/{conversation_id}/messages/{message_id}/reactions
+     */
+    public function removeReaction(string $conversationId, string $messageId, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/social/conversations/' . rawurlencode($conversationId) . '/messages/' . rawurlencode($messageId) . '/reactions', [
+            'options' => $options,
+        ]);
+    }
 }

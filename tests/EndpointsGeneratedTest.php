@@ -186,6 +186,34 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'GET', 'path' => '/analytics/inbox/conversations/test-id'], $this->calls[0]);
     }
 
+    public function test_analytics_getYoutubeChannelInsights(): void
+    {
+        $sq = $this->client();
+        $sq->analytics->getYoutubeChannelInsights();
+        $this->assertSame(['method' => 'GET', 'path' => '/analytics/youtube/channel-insights'], $this->calls[0]);
+    }
+
+    public function test_analytics_getYoutubeDailyViews(): void
+    {
+        $sq = $this->client();
+        $sq->analytics->getYoutubeDailyViews();
+        $this->assertSame(['method' => 'GET', 'path' => '/analytics/youtube/daily-views'], $this->calls[0]);
+    }
+
+    public function test_analytics_getYoutubeVideoRetention(): void
+    {
+        $sq = $this->client();
+        $sq->analytics->getYoutubeVideoRetention();
+        $this->assertSame(['method' => 'GET', 'path' => '/analytics/youtube/video-retention'], $this->calls[0]);
+    }
+
+    public function test_analytics_getYoutubeDemographics(): void
+    {
+        $sq = $this->client();
+        $sq->analytics->getYoutubeDemographics();
+        $this->assertSame(['method' => 'GET', 'path' => '/analytics/youtube/demographics'], $this->calls[0]);
+    }
+
     public function test_articles_generate(): void
     {
         $sq = $this->client();
@@ -620,6 +648,20 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'POST', 'path' => '/social/conversations/test-id/read'], $this->calls[0]);
     }
 
+    public function test_messages_reactTo(): void
+    {
+        $sq = $this->client();
+        $sq->messages->reactTo('test-id', 'test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/conversations/test-id/messages/test-id/reactions'], $this->calls[0]);
+    }
+
+    public function test_messages_removeReaction(): void
+    {
+        $sq = $this->client();
+        $sq->messages->removeReaction('test-id', 'test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/social/conversations/test-id/messages/test-id/reactions'], $this->calls[0]);
+    }
+
     public function test_images_generate(): void
     {
         $sq = $this->client();
@@ -667,6 +709,13 @@ final class EndpointsGeneratedTest extends TestCase
         $sq = $this->client();
         $sq->jobs->cancel('test-id', []);
         $this->assertSame(['method' => 'POST', 'path' => '/jobs/test-id/cancel'], $this->calls[0]);
+    }
+
+    public function test_logs_list(): void
+    {
+        $sq = $this->client();
+        $sq->logs->list();
+        $this->assertSame(['method' => 'GET', 'path' => '/logs'], $this->calls[0]);
     }
 
     public function test_media_list(): void
@@ -1642,6 +1691,13 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'GET', 'path' => '/urls/test-id/stats'], $this->calls[0]);
     }
 
+    public function test_urls_updateShort(): void
+    {
+        $sq = $this->client();
+        $sq->urls->updateShort('test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/urls/test-id'], $this->calls[0]);
+    }
+
     public function test_videos_listModels(): void
     {
         $sq = $this->client();
@@ -1747,6 +1803,13 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'POST', 'path' => '/webhooks/test-id/test'], $this->calls[0]);
     }
 
+    public function test_webhooks_replayDelivery(): void
+    {
+        $sq = $this->client();
+        $sq->webhooks->replayDelivery('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/webhooks/deliveries/test-id/replay'], $this->calls[0]);
+    }
+
     public function test_whatsApp_sendWhatsAppMessage(): void
     {
         $sq = $this->client();
@@ -1787,6 +1850,48 @@ final class EndpointsGeneratedTest extends TestCase
         $sq = $this->client();
         $sq->whatsApp->listWhatsAppPhoneNumbers();
         $this->assertSame(['method' => 'GET', 'path' => '/whatsapp/phone-numbers'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_getTemplate(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->getTemplate('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/whatsapp/templates/test-id'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_updateTemplate(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->updateTemplate('test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/whatsapp/templates/test-id'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_deleteTemplate(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->deleteTemplate('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/whatsapp/templates/test-id'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_updateProfilePhoto(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->updateProfilePhoto([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/whatsapp/business-profile/photo'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_getDisplayName(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->getDisplayName();
+        $this->assertSame(['method' => 'GET', 'path' => '/whatsapp/business-profile/display-name'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_updateDisplayName(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->updateDisplayName([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/whatsapp/business-profile/display-name'], $this->calls[0]);
     }
 
     public function test_workspaces_list(): void
