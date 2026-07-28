@@ -170,4 +170,30 @@ class WhatsAppResource
             'options' => $options,
         ]);
     }
+
+    /**
+     * Browse the shared template library
+     *
+     * GET /whatsapp/template-library
+     */
+    public function listTemplateLibrary(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/whatsapp/template-library', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Adopt a library template
+     *
+     * POST /whatsapp/templates/from-library
+     */
+    public function createTemplateFromLibrary(array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/whatsapp/templates/from-library', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
 }

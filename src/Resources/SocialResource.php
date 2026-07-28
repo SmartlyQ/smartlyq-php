@@ -541,6 +541,19 @@ class SocialResource
     }
 
     /**
+     * Create a Pinterest board
+     *
+     * POST /social/accounts/{account_id}/pinterest/boards
+     */
+    public function createPinterestBoard(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/accounts/' . rawurlencode($accountId) . '/pinterest/boards', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * YouTube playlists
      *
      * GET /social/accounts/{account_id}/youtube/playlists
@@ -1140,6 +1153,82 @@ class SocialResource
     {
         return $this->client->request('POST', '/social/accounts/' . rawurlencode($accountId) . '/connect-select', [
             'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Get Facebook page details
+     *
+     * GET /social/accounts/{account_id}/facebook/page
+     */
+    public function getFacebookPage(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/facebook/page', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Update Facebook page details
+     *
+     * PATCH /social/accounts/{account_id}/facebook/page
+     */
+    public function updateFacebookPage(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('PATCH', '/social/accounts/' . rawurlencode($accountId) . '/facebook/page', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Update a YouTube playlist
+     *
+     * PATCH /social/accounts/{account_id}/youtube/playlists/{playlist_id}
+     */
+    public function updateYoutubePlaylist(string $accountId, string $playlistId, array $body, array $options = []): array
+    {
+        return $this->client->request('PATCH', '/social/accounts/' . rawurlencode($accountId) . '/youtube/playlists/' . rawurlencode($playlistId), [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * List mentions
+     *
+     * GET /social/accounts/{account_id}/mentions
+     */
+    public function listMentions(string $accountId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/mentions', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Reply to a mention
+     *
+     * POST /social/accounts/{account_id}/mentions/{mention_id}/reply
+     */
+    public function replyToMention(string $accountId, string $mentionId, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/accounts/' . rawurlencode($accountId) . '/mentions/' . rawurlencode($mentionId) . '/reply', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * List subreddit post flairs
+     *
+     * GET /social/accounts/{account_id}/reddit/subreddits/{subreddit}/flairs
+     */
+    public function listRedditFlairs(string $accountId, string $subreddit, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/reddit/subreddits/' . rawurlencode($subreddit) . '/flairs', [
             'options' => $options,
         ]);
     }

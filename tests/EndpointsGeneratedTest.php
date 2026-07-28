@@ -1320,6 +1320,13 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/pinterest/boards'], $this->calls[0]);
     }
 
+    public function test_social_createPinterestBoard(): void
+    {
+        $sq = $this->client();
+        $sq->social->createPinterestBoard('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/accounts/test-id/pinterest/boards'], $this->calls[0]);
+    }
+
     public function test_social_youtubePlaylists(): void
     {
         $sq = $this->client();
@@ -1656,6 +1663,48 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'POST', 'path' => '/social/accounts/test-id/connect-select'], $this->calls[0]);
     }
 
+    public function test_social_getFacebookPage(): void
+    {
+        $sq = $this->client();
+        $sq->social->getFacebookPage('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/facebook/page'], $this->calls[0]);
+    }
+
+    public function test_social_updateFacebookPage(): void
+    {
+        $sq = $this->client();
+        $sq->social->updateFacebookPage('test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/social/accounts/test-id/facebook/page'], $this->calls[0]);
+    }
+
+    public function test_social_updateYoutubePlaylist(): void
+    {
+        $sq = $this->client();
+        $sq->social->updateYoutubePlaylist('test-id', 'test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/social/accounts/test-id/youtube/playlists/test-id'], $this->calls[0]);
+    }
+
+    public function test_social_listMentions(): void
+    {
+        $sq = $this->client();
+        $sq->social->listMentions('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/mentions'], $this->calls[0]);
+    }
+
+    public function test_social_replyToMention(): void
+    {
+        $sq = $this->client();
+        $sq->social->replyToMention('test-id', 'test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/accounts/test-id/mentions/test-id/reply'], $this->calls[0]);
+    }
+
+    public function test_social_listRedditFlairs(): void
+    {
+        $sq = $this->client();
+        $sq->social->listRedditFlairs('test-id', 'test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/reddit/subreddits/test-id/flairs'], $this->calls[0]);
+    }
+
     public function test_urls_shorten(): void
     {
         $sq = $this->client();
@@ -1892,6 +1941,20 @@ final class EndpointsGeneratedTest extends TestCase
         $sq = $this->client();
         $sq->whatsApp->updateDisplayName([]);
         $this->assertSame(['method' => 'POST', 'path' => '/whatsapp/business-profile/display-name'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_listTemplateLibrary(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->listTemplateLibrary();
+        $this->assertSame(['method' => 'GET', 'path' => '/whatsapp/template-library'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_createTemplateFromLibrary(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->createTemplateFromLibrary([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/whatsapp/templates/from-library'], $this->calls[0]);
     }
 
     public function test_workspaces_list(): void
