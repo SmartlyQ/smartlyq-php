@@ -1957,6 +1957,97 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'GET', 'path' => '/whatsapp/phone-numbers'], $this->calls[0]);
     }
 
+    public function test_whatsApp_listWhatsAppFlows(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->listWhatsAppFlows();
+        $this->assertSame(['method' => 'GET', 'path' => '/whatsapp/flows'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_createWhatsAppFlow(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->createWhatsAppFlow([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/whatsapp/flows'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_getWhatsAppFlow(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->getWhatsAppFlow('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/whatsapp/flows/test-id'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_updateWhatsAppFlow(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->updateWhatsAppFlow('test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/whatsapp/flows/test-id'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_deleteWhatsAppFlow(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->deleteWhatsAppFlow('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/whatsapp/flows/test-id'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_getWhatsAppFlowJson(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->getWhatsAppFlowJson('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/whatsapp/flows/test-id/json'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_uploadWhatsAppFlowJson(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->uploadWhatsAppFlowJson('test-id', []);
+        $this->assertSame(['method' => 'PUT', 'path' => '/whatsapp/flows/test-id/json'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_getWhatsAppFlowPreview(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->getWhatsAppFlowPreview('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/whatsapp/flows/test-id/preview'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_publishWhatsAppFlow(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->publishWhatsAppFlow('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/whatsapp/flows/test-id/publish'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_deprecateWhatsAppFlow(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->deprecateWhatsAppFlow('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/whatsapp/flows/test-id/deprecate'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_getWhatsAppBlockedUsers(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->getWhatsAppBlockedUsers();
+        $this->assertSame(['method' => 'GET', 'path' => '/whatsapp/block-users'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_blockWhatsAppUsers(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->blockWhatsAppUsers([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/whatsapp/block-users'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_unblockWhatsAppUsers(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->unblockWhatsAppUsers([]);
+        $this->assertSame(['method' => 'DELETE', 'path' => '/whatsapp/block-users'], $this->calls[0]);
+    }
+
     public function test_whatsApp_getTemplate(): void
     {
         $sq = $this->client();

@@ -94,6 +94,175 @@ class WhatsAppResource
     }
 
     /**
+     * List flows
+     *
+     * GET /whatsapp/flows
+     */
+    public function listWhatsAppFlows(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/whatsapp/flows', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Create a flow
+     *
+     * POST /whatsapp/flows
+     */
+    public function createWhatsAppFlow(array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/whatsapp/flows', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Get flow
+     *
+     * GET /whatsapp/flows/{flow_id}
+     */
+    public function getWhatsAppFlow(string $flowId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/whatsapp/flows/' . rawurlencode($flowId), [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Update flow
+     *
+     * PATCH /whatsapp/flows/{flow_id}
+     */
+    public function updateWhatsAppFlow(string $flowId, array $body, array $options = []): array
+    {
+        return $this->client->request('PATCH', '/whatsapp/flows/' . rawurlencode($flowId), [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Delete flow
+     *
+     * DELETE /whatsapp/flows/{flow_id}
+     */
+    public function deleteWhatsAppFlow(string $flowId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('DELETE', '/whatsapp/flows/' . rawurlencode($flowId), [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Get flow JSON asset
+     *
+     * GET /whatsapp/flows/{flow_id}/json
+     */
+    public function getWhatsAppFlowJson(string $flowId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/whatsapp/flows/' . rawurlencode($flowId) . '/json', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Upload flow JSON
+     *
+     * PUT /whatsapp/flows/{flow_id}/json
+     */
+    public function uploadWhatsAppFlowJson(string $flowId, array $body, array $options = []): array
+    {
+        return $this->client->request('PUT', '/whatsapp/flows/' . rawurlencode($flowId) . '/json', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Get flow preview URL
+     *
+     * GET /whatsapp/flows/{flow_id}/preview
+     */
+    public function getWhatsAppFlowPreview(string $flowId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/whatsapp/flows/' . rawurlencode($flowId) . '/preview', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Publish flow
+     *
+     * POST /whatsapp/flows/{flow_id}/publish
+     */
+    public function publishWhatsAppFlow(string $flowId, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/whatsapp/flows/' . rawurlencode($flowId) . '/publish', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Deprecate flow
+     *
+     * POST /whatsapp/flows/{flow_id}/deprecate
+     */
+    public function deprecateWhatsAppFlow(string $flowId, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/whatsapp/flows/' . rawurlencode($flowId) . '/deprecate', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * List blocked users
+     *
+     * GET /whatsapp/block-users
+     */
+    public function getWhatsAppBlockedUsers(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/whatsapp/block-users', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Block users
+     *
+     * POST /whatsapp/block-users
+     */
+    public function blockWhatsAppUsers(array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/whatsapp/block-users', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Unblock users
+     *
+     * DELETE /whatsapp/block-users
+     */
+    public function unblockWhatsAppUsers(array $body, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/whatsapp/block-users', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * Get a WhatsApp template
      *
      * GET /whatsapp/templates/{name}
