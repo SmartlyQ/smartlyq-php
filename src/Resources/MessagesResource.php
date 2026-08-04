@@ -67,6 +67,18 @@ class MessagesResource
     }
 
     /**
+     * Delete a sent message
+     *
+     * DELETE /social/conversations/{conversation_id}/messages/{message_id}
+     */
+    public function delete(string $conversationId, string $messageId, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/social/conversations/' . rawurlencode($conversationId) . '/messages/' . rawurlencode($messageId), [
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * React to a message
      *
      * POST /social/conversations/{conversation_id}/messages/{message_id}/reactions

@@ -54,6 +54,43 @@ class CommentsResource
     }
 
     /**
+     * Approve or reject a comment
+     *
+     * POST /social/comments/{comment_id}/moderate
+     */
+    public function moderate(string $commentId, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/comments/' . rawurlencode($commentId) . '/moderate', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Like a comment
+     *
+     * POST /social/comments/{comment_id}/like
+     */
+    public function like(string $commentId, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/comments/' . rawurlencode($commentId) . '/like', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Unlike a comment
+     *
+     * DELETE /social/comments/{comment_id}/like
+     */
+    public function unlike(string $commentId, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/social/comments/' . rawurlencode($commentId) . '/like', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * Delete a comment
      *
      * DELETE /social/comments/{comment_id}

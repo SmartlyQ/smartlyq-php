@@ -298,6 +298,34 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'POST', 'path' => '/automations/test-id/trigger'], $this->calls[0]);
     }
 
+    public function test_automations_duplicate(): void
+    {
+        $sq = $this->client();
+        $sq->automations->duplicate('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/automations/test-id/duplicate'], $this->calls[0]);
+    }
+
+    public function test_automations_listVersions(): void
+    {
+        $sq = $this->client();
+        $sq->automations->listVersions('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/automations/test-id/versions'], $this->calls[0]);
+    }
+
+    public function test_automations_getVersion(): void
+    {
+        $sq = $this->client();
+        $sq->automations->getVersion('test-id', 'test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/automations/test-id/versions/test-id'], $this->calls[0]);
+    }
+
+    public function test_automations_restoreVersion(): void
+    {
+        $sq = $this->client();
+        $sq->automations->restoreVersion('test-id', 'test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/automations/test-id/versions/test-id/restore'], $this->calls[0]);
+    }
+
     public function test_automations_listRuns(): void
     {
         $sq = $this->client();
@@ -401,6 +429,27 @@ final class EndpointsGeneratedTest extends TestCase
         $sq = $this->client();
         $sq->comments->hide('test-id');
         $this->assertSame(['method' => 'POST', 'path' => '/social/comments/test-id/hide'], $this->calls[0]);
+    }
+
+    public function test_comments_moderate(): void
+    {
+        $sq = $this->client();
+        $sq->comments->moderate('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/comments/test-id/moderate'], $this->calls[0]);
+    }
+
+    public function test_comments_like(): void
+    {
+        $sq = $this->client();
+        $sq->comments->like('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/social/comments/test-id/like'], $this->calls[0]);
+    }
+
+    public function test_comments_unlike(): void
+    {
+        $sq = $this->client();
+        $sq->comments->unlike('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/social/comments/test-id/like'], $this->calls[0]);
     }
 
     public function test_comments_delete(): void
@@ -646,6 +695,13 @@ final class EndpointsGeneratedTest extends TestCase
         $sq = $this->client();
         $sq->messages->markConversationRead('test-id');
         $this->assertSame(['method' => 'POST', 'path' => '/social/conversations/test-id/read'], $this->calls[0]);
+    }
+
+    public function test_messages_delete(): void
+    {
+        $sq = $this->client();
+        $sq->messages->delete('test-id', 'test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/social/conversations/test-id/messages/test-id'], $this->calls[0]);
     }
 
     public function test_messages_reactTo(): void

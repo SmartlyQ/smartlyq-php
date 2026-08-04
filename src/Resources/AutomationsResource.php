@@ -78,6 +78,54 @@ class AutomationsResource
     }
 
     /**
+     * Duplicate an automation
+     *
+     * POST /automations/{automation_id}/duplicate
+     */
+    public function duplicate(string $automationId, array $options = []): array
+    {
+        return $this->client->request('POST', '/automations/' . rawurlencode($automationId) . '/duplicate', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * List automation versions
+     *
+     * GET /automations/{automation_id}/versions
+     */
+    public function listVersions(string $automationId, array $options = []): array
+    {
+        return $this->client->request('GET', '/automations/' . rawurlencode($automationId) . '/versions', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Get one automation version
+     *
+     * GET /automations/{automation_id}/versions/{version}
+     */
+    public function getVersion(string $automationId, string $version, array $options = []): array
+    {
+        return $this->client->request('GET', '/automations/' . rawurlencode($automationId) . '/versions/' . rawurlencode($version), [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Restore an automation version
+     *
+     * POST /automations/{automation_id}/versions/{version}/restore
+     */
+    public function restoreVersion(string $automationId, string $version, array $options = []): array
+    {
+        return $this->client->request('POST', '/automations/' . rawurlencode($automationId) . '/versions/' . rawurlencode($version) . '/restore', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * List runs
      *
      * GET /automations/{automation_id}/runs
