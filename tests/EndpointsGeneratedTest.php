@@ -2048,6 +2048,62 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'DELETE', 'path' => '/whatsapp/block-users'], $this->calls[0]);
     }
 
+    public function test_whatsApp_listWhatsAppSandboxSessions(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->listWhatsAppSandboxSessions();
+        $this->assertSame(['method' => 'GET', 'path' => '/whatsapp/sandbox/sessions'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_createWhatsAppSandboxSession(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->createWhatsAppSandboxSession([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/whatsapp/sandbox/sessions'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_deleteWhatsAppSandboxSession(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->deleteWhatsAppSandboxSession('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/whatsapp/sandbox/sessions/test-id'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_sendWhatsAppSandboxMessage(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->sendWhatsAppSandboxMessage('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/whatsapp/sandbox/sessions/test-id/send'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_getWhatsAppNumberBridgeStatus(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->getWhatsAppNumberBridgeStatus('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/whatsapp/numbers/test-id/bridge'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_startWhatsAppNumberBridge(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->startWhatsAppNumberBridge('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/whatsapp/numbers/test-id/bridge'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_requestWhatsAppNumberBridgeCode(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->requestWhatsAppNumberBridgeCode('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/whatsapp/numbers/test-id/bridge/request-code'], $this->calls[0]);
+    }
+
+    public function test_whatsApp_verifyWhatsAppNumberBridge(): void
+    {
+        $sq = $this->client();
+        $sq->whatsApp->verifyWhatsAppNumberBridge('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/whatsapp/numbers/test-id/bridge/verify'], $this->calls[0]);
+    }
+
     public function test_whatsApp_getTemplate(): void
     {
         $sq = $this->client();

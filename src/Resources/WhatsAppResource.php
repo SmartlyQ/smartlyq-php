@@ -263,6 +263,105 @@ class WhatsAppResource
     }
 
     /**
+     * List your sandbox sessions
+     *
+     * GET /whatsapp/sandbox/sessions
+     */
+    public function listWhatsAppSandboxSessions(array $options = []): array
+    {
+        return $this->client->request('GET', '/whatsapp/sandbox/sessions', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Start a sandbox activation
+     *
+     * POST /whatsapp/sandbox/sessions
+     */
+    public function createWhatsAppSandboxSession(array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/whatsapp/sandbox/sessions', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Revoke a sandbox session
+     *
+     * DELETE /whatsapp/sandbox/sessions/{session_id}
+     */
+    public function deleteWhatsAppSandboxSession(string $sessionId, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/whatsapp/sandbox/sessions/' . rawurlencode($sessionId), [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Send the sandbox template
+     *
+     * POST /whatsapp/sandbox/sessions/{session_id}/send
+     */
+    public function sendWhatsAppSandboxMessage(string $sessionId, array $options = []): array
+    {
+        return $this->client->request('POST', '/whatsapp/sandbox/sessions/' . rawurlencode($sessionId) . '/send', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Bridge status
+     *
+     * GET /whatsapp/numbers/{sender_id}/bridge
+     */
+    public function getWhatsAppNumberBridgeStatus(string $senderId, array $options = []): array
+    {
+        return $this->client->request('GET', '/whatsapp/numbers/' . rawurlencode($senderId) . '/bridge', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Bridge an owned number onto WhatsApp
+     *
+     * POST /whatsapp/numbers/{sender_id}/bridge
+     */
+    public function startWhatsAppNumberBridge(string $senderId, array $options = []): array
+    {
+        return $this->client->request('POST', '/whatsapp/numbers/' . rawurlencode($senderId) . '/bridge', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Request a verification code
+     *
+     * POST /whatsapp/numbers/{sender_id}/bridge/request-code
+     */
+    public function requestWhatsAppNumberBridgeCode(string $senderId, array $body = [], array $options = []): array
+    {
+        return $this->client->request('POST', '/whatsapp/numbers/' . rawurlencode($senderId) . '/bridge/request-code', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Submit the verification code
+     *
+     * POST /whatsapp/numbers/{sender_id}/bridge/verify
+     */
+    public function verifyWhatsAppNumberBridge(string $senderId, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/whatsapp/numbers/' . rawurlencode($senderId) . '/bridge/verify', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * Get a WhatsApp template
      *
      * GET /whatsapp/templates/{name}
