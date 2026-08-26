@@ -802,6 +802,13 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'POST', 'path' => '/media/upload-url'], $this->calls[0]);
     }
 
+    public function test_media_confirmUpload(): void
+    {
+        $sq = $this->client();
+        $sq->media->confirmUpload('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/media/test-id/confirm'], $this->calls[0]);
+    }
+
     public function test_media_uploadDirect(): void
     {
         $sq = $this->client();

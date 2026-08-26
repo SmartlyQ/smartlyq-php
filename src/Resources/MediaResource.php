@@ -66,6 +66,18 @@ class MediaResource
     }
 
     /**
+     * Confirm a presigned upload
+     *
+     * POST /media/{media_id}/confirm
+     */
+    public function confirmUpload(string $mediaId, array $options = []): array
+    {
+        return $this->client->request('POST', '/media/' . rawurlencode($mediaId) . '/confirm', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * Upload a file directly
      *
      * POST /media/upload-direct
