@@ -60,6 +60,265 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'GET', 'path' => '/me/billing'], $this->calls[0]);
     }
 
+    public function test_ads_listCampaigns(): void
+    {
+        $sq = $this->client();
+        $sq->ads->listCampaigns();
+        $this->assertSame(['method' => 'GET', 'path' => '/ads/campaigns'], $this->calls[0]);
+    }
+
+    public function test_ads_createCampaign(): void
+    {
+        $sq = $this->client();
+        $sq->ads->createCampaign([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/campaigns'], $this->calls[0]);
+    }
+
+    public function test_ads_getCampaign(): void
+    {
+        $sq = $this->client();
+        $sq->ads->getCampaign('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/ads/campaigns/test-id'], $this->calls[0]);
+    }
+
+    public function test_ads_updateCampaign(): void
+    {
+        $sq = $this->client();
+        $sq->ads->updateCampaign('test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/ads/campaigns/test-id'], $this->calls[0]);
+    }
+
+    public function test_ads_deleteCampaign(): void
+    {
+        $sq = $this->client();
+        $sq->ads->deleteCampaign('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/ads/campaigns/test-id'], $this->calls[0]);
+    }
+
+    public function test_ads_pauseCampaign(): void
+    {
+        $sq = $this->client();
+        $sq->ads->pauseCampaign('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/campaigns/test-id/pause'], $this->calls[0]);
+    }
+
+    public function test_ads_resumeCampaign(): void
+    {
+        $sq = $this->client();
+        $sq->ads->resumeCampaign('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/campaigns/test-id/resume'], $this->calls[0]);
+    }
+
+    public function test_ads_duplicateCampaign(): void
+    {
+        $sq = $this->client();
+        $sq->ads->duplicateCampaign('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/campaigns/test-id/duplicate'], $this->calls[0]);
+    }
+
+    public function test_ads_archiveCampaign(): void
+    {
+        $sq = $this->client();
+        $sq->ads->archiveCampaign('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/campaigns/test-id/archive'], $this->calls[0]);
+    }
+
+    public function test_ads_bulkCampaignStatus(): void
+    {
+        $sq = $this->client();
+        $sq->ads->bulkCampaignStatus([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/campaigns/bulk-status'], $this->calls[0]);
+    }
+
+    public function test_ads_listSets(): void
+    {
+        $sq = $this->client();
+        $sq->ads->listSets();
+        $this->assertSame(['method' => 'GET', 'path' => '/ads/ad-sets'], $this->calls[0]);
+    }
+
+    public function test_ads_getSet(): void
+    {
+        $sq = $this->client();
+        $sq->ads->getSet('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/ads/ad-sets/test-id'], $this->calls[0]);
+    }
+
+    public function test_ads_deleteSet(): void
+    {
+        $sq = $this->client();
+        $sq->ads->deleteSet('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/ads/ad-sets/test-id'], $this->calls[0]);
+    }
+
+    public function test_ads_pauseSet(): void
+    {
+        $sq = $this->client();
+        $sq->ads->pauseSet('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/ad-sets/test-id/pause'], $this->calls[0]);
+    }
+
+    public function test_ads_resumeSet(): void
+    {
+        $sq = $this->client();
+        $sq->ads->resumeSet('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/ad-sets/test-id/resume'], $this->calls[0]);
+    }
+
+    public function test_ads_duplicateSet(): void
+    {
+        $sq = $this->client();
+        $sq->ads->duplicateSet('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/ad-sets/test-id/duplicate'], $this->calls[0]);
+    }
+
+    public function test_ads_archiveSet(): void
+    {
+        $sq = $this->client();
+        $sq->ads->archiveSet('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/ad-sets/test-id/archive'], $this->calls[0]);
+    }
+
+    public function test_ads_list(): void
+    {
+        $sq = $this->client();
+        $sq->ads->list();
+        $this->assertSame(['method' => 'GET', 'path' => '/ads/ads'], $this->calls[0]);
+    }
+
+    public function test_ads_get(): void
+    {
+        $sq = $this->client();
+        $sq->ads->get('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/ads/ads/test-id'], $this->calls[0]);
+    }
+
+    public function test_ads_delete(): void
+    {
+        $sq = $this->client();
+        $sq->ads->delete('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/ads/ads/test-id'], $this->calls[0]);
+    }
+
+    public function test_ads_pause(): void
+    {
+        $sq = $this->client();
+        $sq->ads->pause('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/ads/test-id/pause'], $this->calls[0]);
+    }
+
+    public function test_ads_resume(): void
+    {
+        $sq = $this->client();
+        $sq->ads->resume('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/ads/test-id/resume'], $this->calls[0]);
+    }
+
+    public function test_ads_duplicate(): void
+    {
+        $sq = $this->client();
+        $sq->ads->duplicate('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/ads/test-id/duplicate'], $this->calls[0]);
+    }
+
+    public function test_ads_archive(): void
+    {
+        $sq = $this->client();
+        $sq->ads->archive('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/ads/test-id/archive'], $this->calls[0]);
+    }
+
+    public function test_ads_listAudiences(): void
+    {
+        $sq = $this->client();
+        $sq->ads->listAudiences();
+        $this->assertSame(['method' => 'GET', 'path' => '/ads/audiences'], $this->calls[0]);
+    }
+
+    public function test_ads_listPixels(): void
+    {
+        $sq = $this->client();
+        $sq->ads->listPixels();
+        $this->assertSame(['method' => 'GET', 'path' => '/ads/pixels'], $this->calls[0]);
+    }
+
+    public function test_ads_listLeadForms(): void
+    {
+        $sq = $this->client();
+        $sq->ads->listLeadForms();
+        $this->assertSame(['method' => 'GET', 'path' => '/ads/lead-forms'], $this->calls[0]);
+    }
+
+    public function test_ads_createLeadForm(): void
+    {
+        $sq = $this->client();
+        $sq->ads->createLeadForm([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/lead-forms'], $this->calls[0]);
+    }
+
+    public function test_ads_listCreatives(): void
+    {
+        $sq = $this->client();
+        $sq->ads->listCreatives();
+        $this->assertSame(['method' => 'GET', 'path' => '/ads/creatives'], $this->calls[0]);
+    }
+
+    public function test_ads_createCreative(): void
+    {
+        $sq = $this->client();
+        $sq->ads->createCreative([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/creatives'], $this->calls[0]);
+    }
+
+    public function test_ads_updateCreative(): void
+    {
+        $sq = $this->client();
+        $sq->ads->updateCreative('test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/ads/creatives/test-id'], $this->calls[0]);
+    }
+
+    public function test_ads_deleteCreative(): void
+    {
+        $sq = $this->client();
+        $sq->ads->deleteCreative('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/ads/creatives/test-id'], $this->calls[0]);
+    }
+
+    public function test_ads_listAccounts(): void
+    {
+        $sq = $this->client();
+        $sq->ads->listAccounts();
+        $this->assertSame(['method' => 'GET', 'path' => '/ads/accounts'], $this->calls[0]);
+    }
+
+    public function test_ads_accountsDiagnostics(): void
+    {
+        $sq = $this->client();
+        $sq->ads->accountsDiagnostics();
+        $this->assertSame(['method' => 'GET', 'path' => '/ads/accounts/diagnostics'], $this->calls[0]);
+    }
+
+    public function test_ads_listAuditLog(): void
+    {
+        $sq = $this->client();
+        $sq->ads->listAuditLog();
+        $this->assertSame(['method' => 'GET', 'path' => '/ads/audit-log'], $this->calls[0]);
+    }
+
+    public function test_ads_audienceEstimate(): void
+    {
+        $sq = $this->client();
+        $sq->ads->audienceEstimate([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/estimate'], $this->calls[0]);
+    }
+
+    public function test_ads_syncAccounts(): void
+    {
+        $sq = $this->client();
+        $sq->ads->syncAccounts();
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/sync'], $this->calls[0]);
+    }
+
     public function test_captain_sendMessage(): void
     {
         $sq = $this->client();

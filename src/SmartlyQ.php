@@ -7,6 +7,7 @@ declare(strict_types=1);
 namespace Smartlyq;
 
 use Smartlyq\Resources\AccountResource;
+use Smartlyq\Resources\AdsResource;
 use Smartlyq\Resources\CaptainResource;
 use Smartlyq\Resources\AnalyticsResource;
 use Smartlyq\Resources\ArticlesResource;
@@ -54,6 +55,9 @@ class SmartlyQ
 
     /** Account endpoints. */
     public readonly AccountResource $account;
+
+    /** Ads endpoints. */
+    public readonly AdsResource $ads;
 
     /** AI Captain endpoints. */
     public readonly CaptainResource $captain;
@@ -144,6 +148,7 @@ class SmartlyQ
     {
         $this->client = new CoreClient($apiKey, $options);
         $this->account = new AccountResource($this->client);
+        $this->ads = new AdsResource($this->client);
         $this->captain = new CaptainResource($this->client);
         $this->analytics = new AnalyticsResource($this->client);
         $this->articles = new ArticlesResource($this->client);
