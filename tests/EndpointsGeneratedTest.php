@@ -235,6 +235,13 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'GET', 'path' => '/ads/audiences'], $this->calls[0]);
     }
 
+    public function test_ads_createAudience(): void
+    {
+        $sq = $this->client();
+        $sq->ads->createAudience([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/ads/audiences'], $this->calls[0]);
+    }
+
     public function test_ads_listPixels(): void
     {
         $sq = $this->client();
@@ -317,6 +324,27 @@ final class EndpointsGeneratedTest extends TestCase
         $sq = $this->client();
         $sq->ads->syncAccounts();
         $this->assertSame(['method' => 'POST', 'path' => '/ads/sync'], $this->calls[0]);
+    }
+
+    public function test_ads_analytics(): void
+    {
+        $sq = $this->client();
+        $sq->ads->analytics();
+        $this->assertSame(['method' => 'GET', 'path' => '/ads/analytics'], $this->calls[0]);
+    }
+
+    public function test_ads_targetingSearch(): void
+    {
+        $sq = $this->client();
+        $sq->ads->targetingSearch();
+        $this->assertSame(['method' => 'GET', 'path' => '/ads/targeting-search'], $this->calls[0]);
+    }
+
+    public function test_ads_listPagePosts(): void
+    {
+        $sq = $this->client();
+        $sq->ads->listPagePosts('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/ads/pages/test-id/posts'], $this->calls[0]);
     }
 
     public function test_captain_sendMessage(): void

@@ -323,6 +323,19 @@ class AdsResource
     }
 
     /**
+     * Create an audience
+     *
+     * POST /ads/audiences
+     */
+    public function createAudience(array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/ads/audiences', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * List pixels / conversion destinations
      *
      * GET /ads/pixels
@@ -470,6 +483,45 @@ class AdsResource
     public function syncAccounts(array $options = []): array
     {
         return $this->client->request('POST', '/ads/sync', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Ads performance analytics
+     *
+     * GET /ads/analytics
+     */
+    public function analytics(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/ads/analytics', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Search Meta interest targeting
+     *
+     * GET /ads/targeting-search
+     */
+    public function targetingSearch(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/ads/targeting-search', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * List a Page's organic posts
+     *
+     * GET /ads/pages/{page_id}/posts
+     */
+    public function listPagePosts(string $pageId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/ads/pages/' . rawurlencode($pageId) . '/posts', [
+            'query' => $query,
             'options' => $options,
         ]);
     }
