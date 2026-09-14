@@ -216,6 +216,15 @@ All methods below are available on the client. Full request/response documentati
 | `$sq->automations->listRuns($automationId, $query?)` | `GET /automations/{automation_id}/runs` | List runs |
 | `$sq->automations->getRun($automationId, $runId)` | `GET /automations/{automation_id}/runs/{run_id}` | Get run |
 
+### Calendar
+
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `$sq->calendar->listEventTypes()` | `GET /calendar/event-types` | List booking pages |
+| `$sq->calendar->listSlots($query?)` | `GET /calendar/slots` | List open slots |
+| `$sq->calendar->createBooking($body)` | `POST /calendar/bookings` | Take a booking |
+| `$sq->calendar->cancelBooking($id, $body?)` | `POST /calendar/bookings/{id}/cancel` | Cancel a booking |
+
 ### Chatbot
 
 | Method | Endpoint | Description |
@@ -260,6 +269,18 @@ All methods below are available on the client. Full request/response documentati
 | `$sq->cRM->bulkImportContacts($body)` | `POST /contacts/bulk` | Bulk import contacts |
 | `$sq->cRM->contactChannels($id)` | `GET /contacts/{id}/channels` | Contact channels |
 
+### CRM Companies
+
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `$sq->cRMCompanies->list($query?)` | `GET /companies` | List companies |
+| `$sq->cRMCompanies->create($body)` | `POST /companies` | Create a company |
+| `$sq->cRMCompanies->get($id)` | `GET /companies/{id}` | Get a company |
+| `$sq->cRMCompanies->update($id, $body)` | `PATCH /companies/{id}` | Update a company |
+| `$sq->cRMCompanies->delete($id)` | `DELETE /companies/{id}` | Delete a company |
+| `$sq->cRMCompanies->linkContact($id, $body)` | `POST /companies/{id}/contacts` | Link a contact to a company |
+| `$sq->cRMCompanies->unlinkContact($id, $body)` | `DELETE /companies/{id}/contacts` | Unlink a contact from a company |
+
 ### CRM Contacts
 
 | Method | Endpoint | Description |
@@ -297,6 +318,27 @@ All methods below are available on the client. Full request/response documentati
 | `$sq->opportunities->update($id, $body)` | `PATCH /opportunities/{id}` | Update an opportunity |
 | `$sq->opportunities->delete($id)` | `DELETE /opportunities/{id}` | Delete an opportunity |
 | `$sq->opportunities->updateStatus($id, $body)` | `POST /opportunities/{id}/status` | Update opportunity status |
+
+### CRM Tags
+
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `$sq->cRMTags->list()` | `GET /tags` | List tags |
+| `$sq->cRMTags->create($body)` | `POST /tags` | Create a tag |
+| `$sq->cRMTags->rename($body)` | `POST /tags/rename` | Rename a tag |
+| `$sq->cRMTags->merge($body)` | `POST /tags/merge` | Merge tags |
+| `$sq->cRMTags->delete($body)` | `POST /tags/delete` | Delete a tag |
+
+### CRM Tasks
+
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `$sq->cRMTasks->list($query?)` | `GET /tasks` | List tasks |
+| `$sq->cRMTasks->create($body)` | `POST /tasks` | Create a task |
+| `$sq->cRMTasks->get($id)` | `GET /tasks/{id}` | Get a task |
+| `$sq->cRMTasks->update($id, $body)` | `PATCH /tasks/{id}` | Update a task |
+| `$sq->cRMTasks->delete($id)` | `DELETE /tasks/{id}` | Delete a task |
+| `$sq->cRMTasks->logTime($id, $body)` | `POST /tasks/{id}/time` | Log time on a task |
 
 ### Direct Messages
 

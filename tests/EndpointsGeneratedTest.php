@@ -627,6 +627,34 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'GET', 'path' => '/automations/test-id/runs/test-id'], $this->calls[0]);
     }
 
+    public function test_calendar_listEventTypes(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->listEventTypes();
+        $this->assertSame(['method' => 'GET', 'path' => '/calendar/event-types'], $this->calls[0]);
+    }
+
+    public function test_calendar_listSlots(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->listSlots();
+        $this->assertSame(['method' => 'GET', 'path' => '/calendar/slots'], $this->calls[0]);
+    }
+
+    public function test_calendar_createBooking(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->createBooking([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/calendar/bookings'], $this->calls[0]);
+    }
+
+    public function test_calendar_cancelBooking(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->cancelBooking('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/calendar/bookings/test-id/cancel'], $this->calls[0]);
+    }
+
     public function test_chatbots_list(): void
     {
         $sq = $this->client();
@@ -795,6 +823,55 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'GET', 'path' => '/contacts/test-id/channels'], $this->calls[0]);
     }
 
+    public function test_cRMCompanies_list(): void
+    {
+        $sq = $this->client();
+        $sq->cRMCompanies->list();
+        $this->assertSame(['method' => 'GET', 'path' => '/companies'], $this->calls[0]);
+    }
+
+    public function test_cRMCompanies_create(): void
+    {
+        $sq = $this->client();
+        $sq->cRMCompanies->create([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/companies'], $this->calls[0]);
+    }
+
+    public function test_cRMCompanies_get(): void
+    {
+        $sq = $this->client();
+        $sq->cRMCompanies->get('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/companies/test-id'], $this->calls[0]);
+    }
+
+    public function test_cRMCompanies_update(): void
+    {
+        $sq = $this->client();
+        $sq->cRMCompanies->update('test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/companies/test-id'], $this->calls[0]);
+    }
+
+    public function test_cRMCompanies_delete(): void
+    {
+        $sq = $this->client();
+        $sq->cRMCompanies->delete('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/companies/test-id'], $this->calls[0]);
+    }
+
+    public function test_cRMCompanies_linkContact(): void
+    {
+        $sq = $this->client();
+        $sq->cRMCompanies->linkContact('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/companies/test-id/contacts'], $this->calls[0]);
+    }
+
+    public function test_cRMCompanies_unlinkContact(): void
+    {
+        $sq = $this->client();
+        $sq->cRMCompanies->unlinkContact('test-id', []);
+        $this->assertSame(['method' => 'DELETE', 'path' => '/companies/test-id/contacts'], $this->calls[0]);
+    }
+
     public function test_contacts_list(): void
     {
         $sq = $this->client();
@@ -954,6 +1031,83 @@ final class EndpointsGeneratedTest extends TestCase
         $sq = $this->client();
         $sq->opportunities->updateStatus('test-id', []);
         $this->assertSame(['method' => 'POST', 'path' => '/opportunities/test-id/status'], $this->calls[0]);
+    }
+
+    public function test_cRMTags_list(): void
+    {
+        $sq = $this->client();
+        $sq->cRMTags->list();
+        $this->assertSame(['method' => 'GET', 'path' => '/tags'], $this->calls[0]);
+    }
+
+    public function test_cRMTags_create(): void
+    {
+        $sq = $this->client();
+        $sq->cRMTags->create([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/tags'], $this->calls[0]);
+    }
+
+    public function test_cRMTags_rename(): void
+    {
+        $sq = $this->client();
+        $sq->cRMTags->rename([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/tags/rename'], $this->calls[0]);
+    }
+
+    public function test_cRMTags_merge(): void
+    {
+        $sq = $this->client();
+        $sq->cRMTags->merge([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/tags/merge'], $this->calls[0]);
+    }
+
+    public function test_cRMTags_delete(): void
+    {
+        $sq = $this->client();
+        $sq->cRMTags->delete([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/tags/delete'], $this->calls[0]);
+    }
+
+    public function test_cRMTasks_list(): void
+    {
+        $sq = $this->client();
+        $sq->cRMTasks->list();
+        $this->assertSame(['method' => 'GET', 'path' => '/tasks'], $this->calls[0]);
+    }
+
+    public function test_cRMTasks_create(): void
+    {
+        $sq = $this->client();
+        $sq->cRMTasks->create([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/tasks'], $this->calls[0]);
+    }
+
+    public function test_cRMTasks_get(): void
+    {
+        $sq = $this->client();
+        $sq->cRMTasks->get('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/tasks/test-id'], $this->calls[0]);
+    }
+
+    public function test_cRMTasks_update(): void
+    {
+        $sq = $this->client();
+        $sq->cRMTasks->update('test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/tasks/test-id'], $this->calls[0]);
+    }
+
+    public function test_cRMTasks_delete(): void
+    {
+        $sq = $this->client();
+        $sq->cRMTasks->delete('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/tasks/test-id'], $this->calls[0]);
+    }
+
+    public function test_cRMTasks_logTime(): void
+    {
+        $sq = $this->client();
+        $sq->cRMTasks->logTime('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/tasks/test-id/time'], $this->calls[0]);
     }
 
     public function test_messages_listConversations(): void

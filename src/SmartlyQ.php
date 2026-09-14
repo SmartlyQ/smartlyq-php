@@ -13,13 +13,17 @@ use Smartlyq\Resources\AnalyticsResource;
 use Smartlyq\Resources\ArticlesResource;
 use Smartlyq\Resources\AudioResource;
 use Smartlyq\Resources\AutomationsResource;
+use Smartlyq\Resources\CalendarResource;
 use Smartlyq\Resources\ChatbotsResource;
 use Smartlyq\Resources\CommentsResource;
 use Smartlyq\Resources\ContentResource;
 use Smartlyq\Resources\CRMResource;
+use Smartlyq\Resources\CRMCompaniesResource;
 use Smartlyq\Resources\ContactsResource;
 use Smartlyq\Resources\CustomFieldsResource;
 use Smartlyq\Resources\OpportunitiesResource;
+use Smartlyq\Resources\CRMTagsResource;
+use Smartlyq\Resources\CRMTasksResource;
 use Smartlyq\Resources\MessagesResource;
 use Smartlyq\Resources\ImagesResource;
 use Smartlyq\Resources\JobsResource;
@@ -74,6 +78,9 @@ class SmartlyQ
     /** Automations endpoints. */
     public readonly AutomationsResource $automations;
 
+    /** Calendar endpoints. */
+    public readonly CalendarResource $calendar;
+
     /** Chatbot endpoints. */
     public readonly ChatbotsResource $chatbots;
 
@@ -86,6 +93,9 @@ class SmartlyQ
     /** CRM endpoints. */
     public readonly CRMResource $cRM;
 
+    /** CRM Companies endpoints. */
+    public readonly CRMCompaniesResource $cRMCompanies;
+
     /** CRM Contacts endpoints. */
     public readonly ContactsResource $contacts;
 
@@ -94,6 +104,12 @@ class SmartlyQ
 
     /** CRM Opportunities endpoints. */
     public readonly OpportunitiesResource $opportunities;
+
+    /** CRM Tags endpoints. */
+    public readonly CRMTagsResource $cRMTags;
+
+    /** CRM Tasks endpoints. */
+    public readonly CRMTasksResource $cRMTasks;
 
     /** Direct Messages endpoints. */
     public readonly MessagesResource $messages;
@@ -154,13 +170,17 @@ class SmartlyQ
         $this->articles = new ArticlesResource($this->client);
         $this->audio = new AudioResource($this->client);
         $this->automations = new AutomationsResource($this->client);
+        $this->calendar = new CalendarResource($this->client);
         $this->chatbots = new ChatbotsResource($this->client);
         $this->comments = new CommentsResource($this->client);
         $this->content = new ContentResource($this->client);
         $this->cRM = new CRMResource($this->client);
+        $this->cRMCompanies = new CRMCompaniesResource($this->client);
         $this->contacts = new ContactsResource($this->client);
         $this->customFields = new CustomFieldsResource($this->client);
         $this->opportunities = new OpportunitiesResource($this->client);
+        $this->cRMTags = new CRMTagsResource($this->client);
+        $this->cRMTasks = new CRMTasksResource($this->client);
         $this->messages = new MessagesResource($this->client);
         $this->images = new ImagesResource($this->client);
         $this->jobs = new JobsResource($this->client);
