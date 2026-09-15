@@ -2181,6 +2181,34 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'PATCH', 'path' => '/social/accounts/test-id/facebook/page'], $this->calls[0]);
     }
 
+    public function test_social_getFacebookPageSettings(): void
+    {
+        $sq = $this->client();
+        $sq->social->getFacebookPageSettings('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/facebook/page/settings'], $this->calls[0]);
+    }
+
+    public function test_social_updateFacebookPageSettings(): void
+    {
+        $sq = $this->client();
+        $sq->social->updateFacebookPageSettings('test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/social/accounts/test-id/facebook/page/settings'], $this->calls[0]);
+    }
+
+    public function test_social_setFacebookPagePicture(): void
+    {
+        $sq = $this->client();
+        $sq->social->setFacebookPagePicture('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/accounts/test-id/facebook/page/picture'], $this->calls[0]);
+    }
+
+    public function test_social_setFacebookPageCover(): void
+    {
+        $sq = $this->client();
+        $sq->social->setFacebookPageCover('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/social/accounts/test-id/facebook/page/cover'], $this->calls[0]);
+    }
+
     public function test_social_updateYoutubePlaylist(): void
     {
         $sq = $this->client();

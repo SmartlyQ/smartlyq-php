@@ -1183,6 +1183,57 @@ class SocialResource
     }
 
     /**
+     * Get Facebook page settings
+     *
+     * GET /social/accounts/{account_id}/facebook/page/settings
+     */
+    public function getFacebookPageSettings(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/facebook/page/settings', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Update Facebook page settings
+     *
+     * PATCH /social/accounts/{account_id}/facebook/page/settings
+     */
+    public function updateFacebookPageSettings(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('PATCH', '/social/accounts/' . rawurlencode($accountId) . '/facebook/page/settings', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Set Facebook page profile picture
+     *
+     * POST /social/accounts/{account_id}/facebook/page/picture
+     */
+    public function setFacebookPagePicture(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/accounts/' . rawurlencode($accountId) . '/facebook/page/picture', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Set Facebook page cover photo
+     *
+     * POST /social/accounts/{account_id}/facebook/page/cover
+     */
+    public function setFacebookPageCover(string $accountId, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/social/accounts/' . rawurlencode($accountId) . '/facebook/page/cover', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * Update a YouTube playlist
      *
      * PATCH /social/accounts/{account_id}/youtube/playlists/{playlist_id}
