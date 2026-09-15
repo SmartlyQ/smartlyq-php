@@ -2209,6 +2209,13 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'POST', 'path' => '/social/accounts/test-id/facebook/page/cover'], $this->calls[0]);
     }
 
+    public function test_social_getFacebookReelLimit(): void
+    {
+        $sq = $this->client();
+        $sq->social->getFacebookReelLimit('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/social/accounts/test-id/facebook/reel-limit'], $this->calls[0]);
+    }
+
     public function test_social_updateYoutubePlaylist(): void
     {
         $sq = $this->client();

@@ -1234,6 +1234,18 @@ class SocialResource
     }
 
     /**
+     * Get Facebook Reel limit
+     *
+     * GET /social/accounts/{account_id}/facebook/reel-limit
+     */
+    public function getFacebookReelLimit(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/facebook/reel-limit', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * Update a YouTube playlist
      *
      * PATCH /social/accounts/{account_id}/youtube/playlists/{playlist_id}
