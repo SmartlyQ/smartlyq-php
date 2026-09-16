@@ -3,3 +3,10 @@
 .phpunit.result.cache
 composer.phar
 .DS_Store
+
+# Never commit credentials. This is a public repository.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
