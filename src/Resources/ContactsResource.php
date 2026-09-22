@@ -118,6 +118,31 @@ class ContactsResource
     }
 
     /**
+     * Edit a contact note
+     *
+     * PATCH /contacts/{id}/notes/{note_id}
+     */
+    public function updateNote(string $id, string $noteId, array $body, array $options = []): array
+    {
+        return $this->client->request('PATCH', '/contacts/' . rawurlencode($id) . '/notes/' . rawurlencode($noteId), [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Delete a contact note
+     *
+     * DELETE /contacts/{id}/notes/{note_id}
+     */
+    public function deleteNote(string $id, string $noteId, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/contacts/' . rawurlencode($id) . '/notes/' . rawurlencode($noteId), [
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * Enroll a contact in an automation
      *
      * POST /contacts/{id}/enroll

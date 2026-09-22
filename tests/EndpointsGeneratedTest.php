@@ -928,6 +928,20 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'POST', 'path' => '/contacts/test-id/notes'], $this->calls[0]);
     }
 
+    public function test_contacts_updateNote(): void
+    {
+        $sq = $this->client();
+        $sq->contacts->updateNote('test-id', 'test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/contacts/test-id/notes/test-id'], $this->calls[0]);
+    }
+
+    public function test_contacts_deleteNote(): void
+    {
+        $sq = $this->client();
+        $sq->contacts->deleteNote('test-id', 'test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/contacts/test-id/notes/test-id'], $this->calls[0]);
+    }
+
     public function test_contacts_enroll(): void
     {
         $sq = $this->client();
