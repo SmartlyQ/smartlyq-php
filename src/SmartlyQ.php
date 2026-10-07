@@ -25,6 +25,7 @@ use Smartlyq\Resources\OpportunitiesResource;
 use Smartlyq\Resources\CRMTagsResource;
 use Smartlyq\Resources\CRMTasksResource;
 use Smartlyq\Resources\MessagesResource;
+use Smartlyq\Resources\EditsResource;
 use Smartlyq\Resources\ImagesResource;
 use Smartlyq\Resources\JobsResource;
 use Smartlyq\Resources\LogsResource;
@@ -114,6 +115,9 @@ class SmartlyQ
     /** Direct Messages endpoints. */
     public readonly MessagesResource $messages;
 
+    /** Edits endpoints. */
+    public readonly EditsResource $edits;
+
     /** Images endpoints. */
     public readonly ImagesResource $images;
 
@@ -182,6 +186,7 @@ class SmartlyQ
         $this->cRMTags = new CRMTagsResource($this->client);
         $this->cRMTasks = new CRMTasksResource($this->client);
         $this->messages = new MessagesResource($this->client);
+        $this->edits = new EditsResource($this->client);
         $this->images = new ImagesResource($this->client);
         $this->jobs = new JobsResource($this->client);
         $this->logs = new LogsResource($this->client);

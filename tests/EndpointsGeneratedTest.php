@@ -1173,6 +1173,48 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'DELETE', 'path' => '/social/conversations/test-id/messages/test-id/reactions'], $this->calls[0]);
     }
 
+    public function test_edits_list(): void
+    {
+        $sq = $this->client();
+        $sq->edits->list();
+        $this->assertSame(['method' => 'GET', 'path' => '/edits'], $this->calls[0]);
+    }
+
+    public function test_edits_create(): void
+    {
+        $sq = $this->client();
+        $sq->edits->create([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/edits'], $this->calls[0]);
+    }
+
+    public function test_edits_listOptions(): void
+    {
+        $sq = $this->client();
+        $sq->edits->listOptions();
+        $this->assertSame(['method' => 'GET', 'path' => '/edits/options'], $this->calls[0]);
+    }
+
+    public function test_edits_get(): void
+    {
+        $sq = $this->client();
+        $sq->edits->get('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/edits/test-id'], $this->calls[0]);
+    }
+
+    public function test_edits_update(): void
+    {
+        $sq = $this->client();
+        $sq->edits->update('test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/edits/test-id'], $this->calls[0]);
+    }
+
+    public function test_edits_export(): void
+    {
+        $sq = $this->client();
+        $sq->edits->export('test-id');
+        $this->assertSame(['method' => 'POST', 'path' => '/edits/test-id/export'], $this->calls[0]);
+    }
+
     public function test_images_generate(): void
     {
         $sq = $this->client();
