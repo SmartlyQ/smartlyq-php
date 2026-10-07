@@ -1537,6 +1537,13 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'GET', 'path' => '/shorts'], $this->calls[0]);
     }
 
+    public function test_shorts_listCaptionStyles(): void
+    {
+        $sq = $this->client();
+        $sq->shorts->listCaptionStyles();
+        $this->assertSame(['method' => 'GET', 'path' => '/shorts/caption-styles'], $this->calls[0]);
+    }
+
     public function test_shorts_get(): void
     {
         $sq = $this->client();

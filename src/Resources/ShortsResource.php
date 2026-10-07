@@ -42,6 +42,18 @@ class ShortsResource
     }
 
     /**
+     * List caption styles for shorts
+     *
+     * GET /shorts/caption-styles
+     */
+    public function listCaptionStyles(array $options = []): array
+    {
+        return $this->client->request('GET', '/shorts/caption-styles', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * Get shorts job + clips
      *
      * GET /shorts/{uid}
