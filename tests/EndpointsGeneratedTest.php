@@ -1551,6 +1551,13 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'GET', 'path' => '/shorts/test-id'], $this->calls[0]);
     }
 
+    public function test_shorts_listLanguages(): void
+    {
+        $sq = $this->client();
+        $sq->shorts->listLanguages();
+        $this->assertSame(['method' => 'GET', 'path' => '/languages'], $this->calls[0]);
+    }
+
     public function test_social_listAccounts(): void
     {
         $sq = $this->client();

@@ -64,4 +64,16 @@ class ShortsResource
             'options' => $options,
         ]);
     }
+
+    /**
+     * List speech languages
+     *
+     * GET /languages
+     */
+    public function listLanguages(array $options = []): array
+    {
+        return $this->client->request('GET', '/languages', [
+            'options' => $options,
+        ]);
+    }
 }
