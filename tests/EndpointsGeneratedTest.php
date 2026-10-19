@@ -1005,6 +1005,13 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'POST', 'path' => '/pipelines'], $this->calls[0]);
     }
 
+    public function test_opportunities_listPipelineStages(): void
+    {
+        $sq = $this->client();
+        $sq->opportunities->listPipelineStages('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/pipelines/test-id/stages'], $this->calls[0]);
+    }
+
     public function test_opportunities_list(): void
     {
         $sq = $this->client();

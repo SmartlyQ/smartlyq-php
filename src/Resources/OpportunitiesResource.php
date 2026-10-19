@@ -41,6 +41,18 @@ class OpportunitiesResource
     }
 
     /**
+     * List a pipeline's stages
+     *
+     * GET /pipelines/{id}/stages
+     */
+    public function listPipelineStages(string $id, array $options = []): array
+    {
+        return $this->client->request('GET', '/pipelines/' . rawurlencode($id) . '/stages', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * List opportunities
      *
      * GET /opportunities
