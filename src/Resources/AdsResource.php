@@ -83,9 +83,10 @@ class AdsResource
      *
      * POST /ads/campaigns/{id}/pause
      */
-    public function pauseCampaign(string $id, array $options = []): array
+    public function pauseCampaign(string $id, array $body = [], array $options = []): array
     {
         return $this->client->request('POST', '/ads/campaigns/' . rawurlencode($id) . '/pause', [
+            'body' => $body,
             'options' => $options,
         ]);
     }
@@ -95,9 +96,10 @@ class AdsResource
      *
      * POST /ads/campaigns/{id}/resume
      */
-    public function resumeCampaign(string $id, array $options = []): array
+    public function resumeCampaign(string $id, array $body = [], array $options = []): array
     {
         return $this->client->request('POST', '/ads/campaigns/' . rawurlencode($id) . '/resume', [
+            'body' => $body,
             'options' => $options,
         ]);
     }
@@ -181,9 +183,10 @@ class AdsResource
      *
      * POST /ads/ad-sets/{id}/pause
      */
-    public function pauseSet(string $id, array $options = []): array
+    public function pauseSet(string $id, array $body = [], array $options = []): array
     {
         return $this->client->request('POST', '/ads/ad-sets/' . rawurlencode($id) . '/pause', [
+            'body' => $body,
             'options' => $options,
         ]);
     }
@@ -193,9 +196,10 @@ class AdsResource
      *
      * POST /ads/ad-sets/{id}/resume
      */
-    public function resumeSet(string $id, array $options = []): array
+    public function resumeSet(string $id, array $body = [], array $options = []): array
     {
         return $this->client->request('POST', '/ads/ad-sets/' . rawurlencode($id) . '/resume', [
+            'body' => $body,
             'options' => $options,
         ]);
     }
@@ -266,9 +270,10 @@ class AdsResource
      *
      * POST /ads/ads/{id}/pause
      */
-    public function pause(string $id, array $options = []): array
+    public function pause(string $id, array $body = [], array $options = []): array
     {
         return $this->client->request('POST', '/ads/ads/' . rawurlencode($id) . '/pause', [
+            'body' => $body,
             'options' => $options,
         ]);
     }
@@ -278,9 +283,10 @@ class AdsResource
      *
      * POST /ads/ads/{id}/resume
      */
-    public function resume(string $id, array $options = []): array
+    public function resume(string $id, array $body = [], array $options = []): array
     {
         return $this->client->request('POST', '/ads/ads/' . rawurlencode($id) . '/resume', [
+            'body' => $body,
             'options' => $options,
         ]);
     }

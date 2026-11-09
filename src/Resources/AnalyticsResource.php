@@ -46,10 +46,9 @@ class AnalyticsResource
      *
      * GET /analytics/accounts/{account_id}
      */
-    public function getAccount(string $accountId, array $query = [], array $options = []): array
+    public function getAccount(string $accountId, array $options = []): array
     {
         return $this->client->request('GET', '/analytics/accounts/' . rawurlencode($accountId), [
-            'query' => $query,
             'options' => $options,
         ]);
     }

@@ -98,14 +98,14 @@ final class EndpointsGeneratedTest extends TestCase
     public function test_ads_pauseCampaign(): void
     {
         $sq = $this->client();
-        $sq->ads->pauseCampaign('test-id');
+        $sq->ads->pauseCampaign('test-id', []);
         $this->assertSame(['method' => 'POST', 'path' => '/ads/campaigns/test-id/pause'], $this->calls[0]);
     }
 
     public function test_ads_resumeCampaign(): void
     {
         $sq = $this->client();
-        $sq->ads->resumeCampaign('test-id');
+        $sq->ads->resumeCampaign('test-id', []);
         $this->assertSame(['method' => 'POST', 'path' => '/ads/campaigns/test-id/resume'], $this->calls[0]);
     }
 
@@ -154,14 +154,14 @@ final class EndpointsGeneratedTest extends TestCase
     public function test_ads_pauseSet(): void
     {
         $sq = $this->client();
-        $sq->ads->pauseSet('test-id');
+        $sq->ads->pauseSet('test-id', []);
         $this->assertSame(['method' => 'POST', 'path' => '/ads/ad-sets/test-id/pause'], $this->calls[0]);
     }
 
     public function test_ads_resumeSet(): void
     {
         $sq = $this->client();
-        $sq->ads->resumeSet('test-id');
+        $sq->ads->resumeSet('test-id', []);
         $this->assertSame(['method' => 'POST', 'path' => '/ads/ad-sets/test-id/resume'], $this->calls[0]);
     }
 
@@ -203,14 +203,14 @@ final class EndpointsGeneratedTest extends TestCase
     public function test_ads_pause(): void
     {
         $sq = $this->client();
-        $sq->ads->pause('test-id');
+        $sq->ads->pause('test-id', []);
         $this->assertSame(['method' => 'POST', 'path' => '/ads/ads/test-id/pause'], $this->calls[0]);
     }
 
     public function test_ads_resume(): void
     {
         $sq = $this->client();
-        $sq->ads->resume('test-id');
+        $sq->ads->resume('test-id', []);
         $this->assertSame(['method' => 'POST', 'path' => '/ads/ads/test-id/resume'], $this->calls[0]);
     }
 
