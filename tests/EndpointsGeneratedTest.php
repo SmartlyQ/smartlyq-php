@@ -641,6 +641,13 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'GET', 'path' => '/calendar/slots'], $this->calls[0]);
     }
 
+    public function test_calendar_listBookings(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->listBookings();
+        $this->assertSame(['method' => 'GET', 'path' => '/calendar/bookings'], $this->calls[0]);
+    }
+
     public function test_calendar_createBooking(): void
     {
         $sq = $this->client();
@@ -653,6 +660,104 @@ final class EndpointsGeneratedTest extends TestCase
         $sq = $this->client();
         $sq->calendar->cancelBooking('test-id', []);
         $this->assertSame(['method' => 'POST', 'path' => '/calendar/bookings/test-id/cancel'], $this->calls[0]);
+    }
+
+    public function test_calendar_getBooking(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->getBooking('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/calendar/bookings/test-id'], $this->calls[0]);
+    }
+
+    public function test_calendar_setBookingStatus(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->setBookingStatus('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/calendar/bookings/test-id/status'], $this->calls[0]);
+    }
+
+    public function test_calendar_rescheduleBooking(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->rescheduleBooking('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/calendar/bookings/test-id/reschedule'], $this->calls[0]);
+    }
+
+    public function test_calendar_listBookingNotes(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->listBookingNotes('test-id');
+        $this->assertSame(['method' => 'GET', 'path' => '/calendar/bookings/test-id/notes'], $this->calls[0]);
+    }
+
+    public function test_calendar_addBookingNote(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->addBookingNote('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/calendar/bookings/test-id/notes'], $this->calls[0]);
+    }
+
+    public function test_calendar_deleteBookingNote(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->deleteBookingNote('test-id', 'test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/calendar/bookings/test-id/notes/test-id'], $this->calls[0]);
+    }
+
+    public function test_calendar_listBlockedTimes(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->listBlockedTimes();
+        $this->assertSame(['method' => 'GET', 'path' => '/calendar/blocked-times'], $this->calls[0]);
+    }
+
+    public function test_calendar_createBlockedTime(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->createBlockedTime([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/calendar/blocked-times'], $this->calls[0]);
+    }
+
+    public function test_calendar_deleteBlockedTime(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->deleteBlockedTime('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/calendar/blocked-times/test-id'], $this->calls[0]);
+    }
+
+    public function test_calendar_listAvailabilitySchedules(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->listAvailabilitySchedules();
+        $this->assertSame(['method' => 'GET', 'path' => '/calendar/availability'], $this->calls[0]);
+    }
+
+    public function test_calendar_createAvailabilitySchedule(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->createAvailabilitySchedule([]);
+        $this->assertSame(['method' => 'POST', 'path' => '/calendar/availability'], $this->calls[0]);
+    }
+
+    public function test_calendar_updateAvailabilitySchedule(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->updateAvailabilitySchedule('test-id', []);
+        $this->assertSame(['method' => 'PATCH', 'path' => '/calendar/availability/test-id'], $this->calls[0]);
+    }
+
+    public function test_calendar_deleteAvailabilitySchedule(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->deleteAvailabilitySchedule('test-id');
+        $this->assertSame(['method' => 'DELETE', 'path' => '/calendar/availability/test-id'], $this->calls[0]);
+    }
+
+    public function test_calendar_listBusyTimes(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->listBusyTimes();
+        $this->assertSame(['method' => 'GET', 'path' => '/calendar/busy-times'], $this->calls[0]);
     }
 
     public function test_chatbots_list(): void

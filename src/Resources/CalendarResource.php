@@ -41,6 +41,19 @@ class CalendarResource
     }
 
     /**
+     * List bookings
+     *
+     * GET /calendar/bookings
+     */
+    public function listBookings(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/calendar/bookings', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * Take a booking
      *
      * POST /calendar/bookings
@@ -62,6 +75,182 @@ class CalendarResource
     {
         return $this->client->request('POST', '/calendar/bookings/' . rawurlencode($id) . '/cancel', [
             'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Get a booking
+     *
+     * GET /calendar/bookings/{id}
+     */
+    public function getBooking(string $id, array $options = []): array
+    {
+        return $this->client->request('GET', '/calendar/bookings/' . rawurlencode($id), [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Set a booking's status
+     *
+     * POST /calendar/bookings/{id}/status
+     */
+    public function setBookingStatus(string $id, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/calendar/bookings/' . rawurlencode($id) . '/status', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Reschedule a booking
+     *
+     * POST /calendar/bookings/{id}/reschedule
+     */
+    public function rescheduleBooking(string $id, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/calendar/bookings/' . rawurlencode($id) . '/reschedule', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * List booking notes
+     *
+     * GET /calendar/bookings/{id}/notes
+     */
+    public function listBookingNotes(string $id, array $options = []): array
+    {
+        return $this->client->request('GET', '/calendar/bookings/' . rawurlencode($id) . '/notes', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Add a booking note
+     *
+     * POST /calendar/bookings/{id}/notes
+     */
+    public function addBookingNote(string $id, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/calendar/bookings/' . rawurlencode($id) . '/notes', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Delete a booking note
+     *
+     * DELETE /calendar/bookings/{id}/notes/{note_id}
+     */
+    public function deleteBookingNote(string $id, string $noteId, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/calendar/bookings/' . rawurlencode($id) . '/notes/' . rawurlencode($noteId), [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * List blocked time
+     *
+     * GET /calendar/blocked-times
+     */
+    public function listBlockedTimes(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/calendar/blocked-times', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Block off time
+     *
+     * POST /calendar/blocked-times
+     */
+    public function createBlockedTime(array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/calendar/blocked-times', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Free blocked time
+     *
+     * DELETE /calendar/blocked-times/{id}
+     */
+    public function deleteBlockedTime(string $id, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/calendar/blocked-times/' . rawurlencode($id), [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * List availability schedules
+     *
+     * GET /calendar/availability
+     */
+    public function listAvailabilitySchedules(array $options = []): array
+    {
+        return $this->client->request('GET', '/calendar/availability', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Create an availability schedule
+     *
+     * POST /calendar/availability
+     */
+    public function createAvailabilitySchedule(array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/calendar/availability', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Update an availability schedule
+     *
+     * PATCH /calendar/availability/{id}
+     */
+    public function updateAvailabilitySchedule(string $id, array $body = [], array $options = []): array
+    {
+        return $this->client->request('PATCH', '/calendar/availability/' . rawurlencode($id), [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Delete an availability schedule
+     *
+     * DELETE /calendar/availability/{id}
+     */
+    public function deleteAvailabilitySchedule(string $id, array $options = []): array
+    {
+        return $this->client->request('DELETE', '/calendar/availability/' . rawurlencode($id), [
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * List busy times
+     *
+     * GET /calendar/busy-times
+     */
+    public function listBusyTimes(array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/calendar/busy-times', [
+            'query' => $query,
             'options' => $options,
         ]);
     }
