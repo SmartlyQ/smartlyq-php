@@ -683,6 +683,27 @@ final class EndpointsGeneratedTest extends TestCase
         $this->assertSame(['method' => 'POST', 'path' => '/calendar/bookings/test-id/reschedule'], $this->calls[0]);
     }
 
+    public function test_calendar_declineBooking(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->declineBooking('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/calendar/bookings/test-id/decline'], $this->calls[0]);
+    }
+
+    public function test_calendar_markBookingNoShow(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->markBookingNoShow('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/calendar/bookings/test-id/no-show'], $this->calls[0]);
+    }
+
+    public function test_calendar_addBookingGuests(): void
+    {
+        $sq = $this->client();
+        $sq->calendar->addBookingGuests('test-id', []);
+        $this->assertSame(['method' => 'POST', 'path' => '/calendar/bookings/test-id/guests'], $this->calls[0]);
+    }
+
     public function test_calendar_listBookingNotes(): void
     {
         $sq = $this->client();

@@ -118,6 +118,45 @@ class CalendarResource
     }
 
     /**
+     * Decline a booking
+     *
+     * POST /calendar/bookings/{id}/decline
+     */
+    public function declineBooking(string $id, array $body = [], array $options = []): array
+    {
+        return $this->client->request('POST', '/calendar/bookings/' . rawurlencode($id) . '/decline', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Mark who did not come
+     *
+     * POST /calendar/bookings/{id}/no-show
+     */
+    public function markBookingNoShow(string $id, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/calendar/bookings/' . rawurlencode($id) . '/no-show', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Add guests to a booking
+     *
+     * POST /calendar/bookings/{id}/guests
+     */
+    public function addBookingGuests(string $id, array $body, array $options = []): array
+    {
+        return $this->client->request('POST', '/calendar/bookings/' . rawurlencode($id) . '/guests', [
+            'body' => $body,
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * List booking notes
      *
      * GET /calendar/bookings/{id}/notes
