@@ -104,7 +104,7 @@ class SocialResource
     }
 
     /**
-     * Rename account
+     * Update account
      *
      * PATCH /social/accounts/{account_id}
      */
