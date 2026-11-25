@@ -1234,6 +1234,31 @@ class SocialResource
     }
 
     /**
+     * Community authors
+     *
+     * GET /social/accounts/{account_id}/community/authors
+     */
+    public function listCommunityAuthors(string $accountId, array $query = [], array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/community/authors', [
+            'query' => $query,
+            'options' => $options,
+        ]);
+    }
+
+    /**
+     * Community planner limits
+     *
+     * GET /social/accounts/{account_id}/community/limits
+     */
+    public function getCommunityLimits(string $accountId, array $options = []): array
+    {
+        return $this->client->request('GET', '/social/accounts/' . rawurlencode($accountId) . '/community/limits', [
+            'options' => $options,
+        ]);
+    }
+
+    /**
      * Get Facebook Reel limit
      *
      * GET /social/accounts/{account_id}/facebook/reel-limit
